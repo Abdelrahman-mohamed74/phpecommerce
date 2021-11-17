@@ -213,7 +213,7 @@ session_start();
                         </li>
                         <li>
                             <a href="About.php">
-                                About us
+                                About 
                             </a>
                         </li>
                         <li>
