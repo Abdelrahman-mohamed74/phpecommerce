@@ -4,15 +4,16 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 //inputs
-$usernameUp = $_POST['username'];
+$userfirstnameUp = $_POST['firstname'];
+$userLastnamenameUp = $_POST['Lastname'];
 $emailUp    = $_POST['email'];
 $passwordUp = $_POST['password'];
 $passwordUp = md5($passwordUp);
 
-$_SESSION['fullname'] = $_POST['username'];
+$_SESSION['fullname'] = $_POST['firstname'];
 $_SESSION['email'] = $_POST['email'];
 //connect
-$servername     = "mysql:host=localhost;dbname=shop";
+$servername     = "mysql:host=localhost;dbname=ecomm";
 $serverusername = "root";
 $serverpassword = "";
 
@@ -20,12 +21,13 @@ try{
 $conn = new PDO($servername,$serverusername,$serverpassword);
 $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$stmt = $conn->prepare("INSERT INTO users(UserName,UserEmail,Password)
-    VALUES(:UserName,:UserEmail,:Password)");
+$stmt = $conn->prepare("INSERT INTO users(firstname,lastname,email,password)
+    VALUES(:firstname,:Lastname, :email,:password)");
 
-        $stmt->bindParam(':UserName',$usernameUp);
-        $stmt->bindParam(':UserEmail',$emailUp);
-        $stmt->bindParam(':Password',$passwordUp);
+        $stmt->bindParam(':firstname',$userfirstnameUp);
+        $stmt->bindParam(':Lastname',$userLastnamenameUp);
+        $stmt->bindParam(':email',$emailUp);
+        $stmt->bindParam(':password',$passwordUp);
 
         $stmt->execute();
         header("Location:index.php");
@@ -87,11 +89,15 @@ $stmt = $conn->prepare("INSERT INTO users(UserName,UserEmail,Password)
                                     <img src="assets/images/logo.png" alt="" class="logo">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" autocomplete="off" autofocus required name="username" />
-                                    <label class="floating-label"> username </label>
+                                    <input type="text" class="form-control" autocomplete="off" autofocus required name="firstname"  value="<?php echo (isset($_SESSION['firstname'])) ? $_SESSION['firstname'] : '' ?>"/>
+                                    <label class="floating-label"> firstname </label>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" autocomplete="off" autofocus required name="email" />
+                                    <input type="text" class="form-control" autocomplete="off" autofocus required name="Lastname"  value="<?php echo (isset($_SESSION['Lastname'])) ? $_SESSION['Lastname'] : '' ?>"/>
+                                    <label class="floating-label"> Lastname </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" autocomplete="off" autofocus required name="email" value="<?php echo (isset($_SESSION['email'])) ? $_SESSION['email'] : '' ?>"/>
                                     <label class="floating-label">Email Address </label>
                                 </div>
                                 <div class="form-group">

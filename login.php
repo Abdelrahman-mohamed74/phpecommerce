@@ -6,7 +6,7 @@ if (isset($_POST['signin'])) {
     $passwordIn   = md5($passwordIn);
 
     //connect
-    $servername     = "mysql:host=localhost;dbname=shop";
+    $servername     = "mysql:host=localhost;dbname=ecomm";
     $serverusername = "root";
     $serverpassword = "";
 
@@ -14,14 +14,14 @@ try{
     $conn = new PDO($servername,$serverusername,$serverpassword);
     $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE UserEmail = :useremail");
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :useremail");
     $stmt->bindParam(':useremail',$emailAddress);
     $stmt->execute();
     $result = $stmt->fetchAll();
     
     if ($result) {
         foreach ($result as $user) {
-            if ($user['Password'] == md5($_POST['passwordIn'])) {
+            if ($user['password'] == md5($_POST['passwordIn'])) {
                 header("Location:index.php");
             }else{
                 echo "email not found";
