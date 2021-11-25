@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2021 at 01:58 PM
+-- Generation Time: Nov 25, 2021 at 04:47 PM
 -- Server version: 10.4.20-MariaDB
--- PHP Version: 7.3.29
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,7 +51,7 @@ INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`) VALUES
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
+  `cat_name` varchar(100) NOT NULL,
   `cat_slug` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -59,7 +59,7 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `cat_slug`) VALUES
+INSERT INTO `category` (`id`, `cat_name`, `cat_slug`) VALUES
 (1, 'Laptops', 'laptops'),
 (2, 'Desktop PC', 'desktop-pc'),
 (3, 'Tablets', 'tablets'),
