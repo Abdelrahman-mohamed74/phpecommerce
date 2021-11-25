@@ -80,7 +80,7 @@ if (isset($_POST['addtocart'])) {
                                                           </li>
                                                           <li>
                                                             <a
-                                                              href='single_product.php?prodid=".$Oneproduct['id']."'
+                                                              href='single_product.php?Oneid=".$Oneproduct['id']."'
                                                               data-toggle='tooltip'
                                                               data-placement='top'
                                                               title=' View Details'
@@ -90,7 +90,7 @@ if (isset($_POST['addtocart'])) {
                                                           </li>
                                                           <li>
                                                             <a
-                                                              href='favorite.php?prodid=".$Oneproduct['id']."'
+                                                              href='favorite.php?Oneid=".$Oneproduct['id']."'
                                                               data-toggle='tooltip'
                                                               data-placement='top'
                                                               title='  Add to Favourit'
@@ -101,7 +101,7 @@ if (isset($_POST['addtocart'])) {
                                                         </ul>
                                                       </div>
                                                       <div class='product-content'>
-                                                        <a href='single_product.php?prodid=".$Oneproduct['id']."'
+                                                        <a href='single_product.php?Oneid=".$Oneproduct['id']."'
                                                           name='name' >".$Oneproduct['name']."</a
                                                         >
                                                         <p name='pric'>".$Oneproduct['price']."</p>

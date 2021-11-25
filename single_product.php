@@ -1,55 +1,48 @@
 
 <?php
-if (isset($_GET['prodid'])) {
-    // code...
-
-//connect
-$servername     = "mysql:host=localhost;dbname=ecomm";
-$serverusername = "root";
-$serverpassword = "";
-
-try{
-$conn = new PDO($servername,$serverusername,$serverpassword);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-$stmt = $conn->prepare("SELECT * FROM products WHERE productID = :id");
-$stmt->bindparam(":id",$_GET['prodid']);
-$stmt->execute();
-$result = $stmt->fetchAll();
-
-$get = $conn->prepare("SELECT * FROM products");
-$get->execute();
-$show = $get->fetchAll();
-}catch(PDOException $e){
-        echo $e->getmessage();
-}
-$conn = null;
-}
-
-?>
-
-<?php
-
 include('includes/header.php');
+
+    if (isset($_GET['Oneid'])) {
+        
+        $conn = $pdo->open();
+        try{
+            // One Product To Display By It's ID And It's category
+            $stmt = $conn->prepare("SELECT * ,category.cat_name
+              FROM products,category WHERE products.id = :product_id && products.category_id = category.id");
+            $stmt->bindparam(":product_id",$_GET['Oneid']);
+            $stmt->execute();
+            $selcetedProd = $stmt->fetchAll();
+
+            // All Product In DB To Display In Botoom Slider Show
+            $allProducts = $conn->prepare("SELECT * FROM products");
+            $allProducts->execute();
+        } 
+        catch(PDOException $e){
+             echo "Product Not Found !: " . $e->getMessage();
+            }
+        $pdo->close();
+    }
 ?>
+
             <!--start product-details -->
             <section class="product-details">
                 <div class="container">
                     <div class="row">
                         
                         <?php 
-
-                            foreach ($result as $singelpro) {
+                            foreach ($selcetedProd as $singelPro) {
                                 echo '<div class="col-lg-4 col-md-6 col-12 mb-5">
                             <div class=" owl-carousel owl-item owl-single-product">
                                 <div class="item">
-                                    <img src="'.$singelpro["productImg"].'" alt="">
+                                    <img src="images/products/'.$singelPro["photo"].'" alt="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-6 col-12 mb-5">
                             <div class="content">
-                                <h1>'.$singelpro["productName"].'</h1>
-                                <h3  class="price">'.$singelpro["productPrice"].'</h3>
+                                <h3 class="type">'.$singelPro['cat_name'].'</h3>
+                                <h3>'.$singelPro["name"].'</h3>
+                                <h3  class="price">'.$singelPro["price"].'$</h3>
                                 <ul class="rate">
                                     <li class="active"> 
                                         <i class="fas fa-star"></i>
@@ -69,7 +62,7 @@ include('includes/header.php');
                                 </ul>
                                 <p class="description">
                                     
-                                    '.$singelpro["productDes"].'                                    
+                                    '.$singelPro["description"].'                                    
                                 </p>
                                 <div class="quantity">
                                     <strong >Number</strong>
@@ -82,20 +75,19 @@ include('includes/header.php');
                                 <a href="cart.php" class="custom-btn black-btn"> Add to cart</a>
                                 <ul class="code">
                                     <li>
-                                        <strong>Sale Code</strong>
-                                        <span>213312aa</span>
+                                        <strong>Available</strong>
+                                        <span>'.$singelPro['counter'].'</span>
                                     </li>
                                     <li>
                                         <strong>Department</strong>
                                         <span>
-                                             Men Clothes</span>
+                                             '.$singelPro['cat_name'].'</span>
                                     </li>
                                     <li>
                                         <strong>Search Code </strong>
                                         <span>
-                                            Clothes
-                                            trendy
-                                            new arrival</span>
+                                        '.$singelPro['slug'].'
+                                            </span>
                                     </li>
                                 </ul>
                             </div>
@@ -195,11 +187,11 @@ include('includes/header.php');
                                     <div class="owl-carousel owl-theme owl-partner">
                                         <?php
 
-                                            foreach ($show as $showpro) {
+                                            foreach ($allProducts as $showpro) {
                                                 echo '<div class="item">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="'.$showpro['productImg'].'" alt="">
+                                            <img src="images/products/'.$showpro["photo"].'" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.php" data-toggle="tooltip" data-placement="top" title="ا Add to cartه">
@@ -207,7 +199,7 @@ include('includes/header.php');
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="single_product.php" data-toggle="tooltip" data-placement="top"
+                                                    <a href="single_product.php?Oneid='.$showpro["id"].'"" data-toggle="tooltip" data-placement="top"
                                                         title="View Details  ">
                                                         <i class="far fa-dot-circle"></i>
                                                     </a>
@@ -221,8 +213,8 @@ include('includes/header.php');
                                             </ul>
                                         </div>
                                         <div class="product-content">
-                                            <a href="single_product.php?prodid='.$showpro["productID"].'">'.$showpro["productName"].'</a>
-                                            <p>'.$showpro["productPrice"].'</p>
+                                            <a href="single_product.php?Oneid='.$showpro["id"].'">'.$showpro["name"].'</a>
+                                            <p>'.$showpro["price"].'</p>
                                             <ul class="rate">
                                                 <li class="active">
                                                     <i class="fas fa-star"></i>
