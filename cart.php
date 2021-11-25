@@ -1,3 +1,44 @@
+
+<?php
+session_start();
+if (isset($_GET['add-to-cart']) && $_GET['prodid']) {
+    // $_SESSION['cart'] = array(
+    //     'Id' => $_GET['oneid'] , 
+    //     'item_name' => $oneitem['productName'],
+    //     'item_img' => $oneitem['productImg'],
+    //     'item_price' => $oneitem['productPrice'],
+    // );
+
+//connect
+$servername     = "mysql:host=localhost;dbname=shop";
+$serverusername = "root";
+$serverpassword = "";
+
+try{
+$conn = new PDO($servername,$serverusername,$serverpassword);
+$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$stmt = $conn->prepare("SELECT * FROM products WHERE productID = :id");
+$stmt->bindparam(":id",$_GET['prodid']);
+$stmt->execute();
+$result= $stmt->fetchAll();
+foreach ($result as $oneitem) {
+    // code...
+}
+    $_SESSION['cart'] = array(
+        'Id' => $_GET['prodid'] , 
+        'item_name' => $oneitem['productName'],
+        'item_img' => $oneitem['productImg'],
+        'item_price' => $oneitem['productPrice'],
+    );
+}catch(PDOException $e){
+        echo $e->getmessage();
+}
+$conn = null;
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,7 +174,16 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <div class="content">
-                                        <h6 class="heading"> Cart content :- <span>4</span></h6>
+                                        <h6 class="heading"> Cart content :- <?php if (isset($_GET['add-to-cart'])){
+                                            echo count($_SESSION['cart']);
+                                        }
+                                        else{
+                                            echo '0';
+                                        }
+
+                                         ?>
+                                            
+                            
                                     </div>
                                     <ul class="data">
                                         <li class="item">
@@ -247,6 +297,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             <tr>
                                 <td class="text-center">
                                     <a href="#">

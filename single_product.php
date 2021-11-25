@@ -1,3 +1,33 @@
+
+<?php
+session_start();
+if (isset($_GET['prodid'])) {
+    // code...
+
+//connect
+$servername     = "mysql:host=localhost;dbname=shop";
+$serverusername = "root";
+$serverpassword = "";
+
+try{
+$conn = new PDO($servername,$serverusername,$serverpassword);
+$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$stmt = $conn->prepare("SELECT * FROM products WHERE productID = :id");
+$stmt->bindparam(":id",$_GET['prodid']);
+$stmt->execute();
+$result = $stmt->fetchAll();
+
+$get = $conn->prepare("SELECT * FROM products");
+$get->execute();
+$show = $get->fetchAll();
+}catch(PDOException $e){
+        echo $e->getmessage();
+}
+$conn = null;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -236,27 +266,21 @@
             <section class="product-details">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-12 mb-5">
+                        
+                        <?php 
+
+                            foreach ($result as $singelpro) {
+                                echo '<div class="col-lg-4 col-md-6 col-12 mb-5">
                             <div class=" owl-carousel owl-item owl-single-product">
                                 <div class="item">
-                                    <img src="images/product/17.jpg" alt="">
-                                </div>
-                                <div class="item">
-                                    <img src="images/product/12.jpg" alt="">
-                                </div>
-                                <div class="item">
-                                    <img src="images/product/14.jpg" alt="">
-                                </div>
-                                <div class="item">
-                                    <img src="images/product/19.jpg" alt="">
+                                    <img src="'.$singelpro["productImg"].'" alt="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-6 col-12 mb-5">
                             <div class="content">
-                                <h6 class="type">Medical Equipment</h6>
-                                <h4>Clinical Stethoscope Dual Head</h4>
-                                <p class="price">39.50 $</p>
+                                <h1>'.$singelpro["productName"].'</h1>
+                                <h3  class="price">'.$singelpro["productPrice"].'</h3>
                                 <ul class="rate">
                                     <li class="active"> 
                                         <i class="fas fa-star"></i>
@@ -275,10 +299,8 @@
                                     </li>
                                 </ul>
                                 <p class="description">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, sit dicta officiis minus debitis, dolores at ad maiores voluptas nesciunt eius accusamus quas! Neque asperiores autem omnis dicta quam expedita.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, sit dicta officiis minus debitis, dolores at ad maiores voluptas nesciunt eius accusamus quas! Neque asperiores autem omnis dicta quam expedita.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, sit dicta officiis minus debitis, dolores at ad maiores voluptas nesciunt eius accusamus quas! Neque asperiores autem omnis dicta quam expedita.
-                                
+                                    
+                                    '.$singelpro["productDes"].'                                    
                                 </p>
                                 <div class="quantity">
                                     <strong >Number</strong>
@@ -384,25 +406,31 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>';
+                            }
+
+                          ?>
 
                     </div>
                 </div>
             </section>
              <!--start new products-->
              <section class="new-products">
-                <div class="container">
-                    <div class="heading">
-                        <h4>Products </h4>
-                        <p>Shopping And take a great sale ! </p>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="owl-carousel owl-theme owl-partner">
-                                <div class="item">
+                    <div class="container">
+                            <div class="heading">
+                                <h4>Products </h4>
+                                <p>Shopping And take a great sale ! </p>
+                            </div>
+                        <div class="row">
+                         <div class="col-12">
+                                    <div class="owl-carousel owl-theme owl-partner">
+                                        <?php
+
+                                            foreach ($show as $showpro) {
+                                                echo '<div class="item">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/08.jpg" alt="">
+                                            <img src="'.$showpro['productImg'].'" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.php" data-toggle="tooltip" data-placement="top" title="ا Add to cartه">
@@ -424,8 +452,8 @@
                                             </ul>
                                         </div>
                                         <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
+                                            <a href="single_product.php?prodid='.$showpro["productID"].'">'.$showpro["productName"].'</a>
+                                            <p>'.$showpro["productPrice"].'</p>
                                             <ul class="rate">
                                                 <li class="active">
                                                     <i class="fas fa-star"></i>
@@ -445,242 +473,13 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/04.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top" title="ا Add to cartه">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip" data-placement="top"
-                                                        title="View Details  ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title=" Add to cart ">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                </div>';
+                                            }
+
+                                        ?>
                                     </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/03.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top" title="ا Add to cartه">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip" data-placement="top"
-                                                        title="View Details  ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title=" Add to cart ">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/02.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top" title="ا Add to cartه">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip" data-placement="top"
-                                                        title="View Details  ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title=" Add to cart ">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/01.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top" title="ا Add to cartه">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip" data-placement="top"
-                                                        title="View Details  ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title=" Add to cart ">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/06.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top" title="ا Add to cartه">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip" data-placement="top"
-                                                        title="View Details  ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title=" Add to cart ">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        </div>  
                 </div>
             </section>
         </main>
