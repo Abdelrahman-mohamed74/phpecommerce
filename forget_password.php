@@ -4,7 +4,7 @@ if (isset($_GET['Confirm2'])) {
     $passconfirm =$_GET['passConfirm'];
     $passconfirm = md5($passconfirm);
     //connect
-    $servername     = "mysql:host=localhost;dbname=shop";
+    $servername     = "mysql:host=localhost;dbname=ecomm";
     $serverusername = "root";
     $serverpassword = "";
 

@@ -10,7 +10,7 @@ if (isset($_GET['add-to-cart']) && $_GET['prodid']) {
     // );
 
 //connect
-$servername     = "mysql:host=localhost;dbname=shop";
+$servername     = "mysql:host=localhost;dbname=ecomm";
 $serverusername = "root";
 $serverpassword = "";
 

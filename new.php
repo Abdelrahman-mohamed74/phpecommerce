@@ -19,22 +19,22 @@ include('includes/header.php');
                                 <div class="col-lg-3 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/72.jpg" alt="">
+                                            <img src="images/product/72.jpg"  alt="">
                                             <ul class="add-items">
                                                 <li>
-                                                    <a href="cart.html" data-toggle="tooltip" data-placement="top"
+                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
                                                         title="  Add to cart">
                                                         <i class="fas fa-shopping-basket"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="single_product.html" data-toggle="tooltip"
+                                                    <a href="single_product.php" data-toggle="tooltip"
                                                         data-placement="top" title=" View Details">
                                                         <i class="far fa-dot-circle"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="favorite.html" data-toggle="tooltip" data-placement="top"
+                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
                                                         title="  Add to Favourit">
                                                         <i class="far fa-heart"></i>
                                                     </a>
@@ -42,7 +42,7 @@ include('includes/header.php');
                                             </ul>
                                         </div>
                                         <div class="product-content">
-                                            <a href="single_product.html">Block-colored Hooded Top</a>
+                                            <a href="single_product.php">Block-colored Hooded Top</a>
                                             <p>39.50 $</p>
                                             <ul class="rate">
                                                 <li class="active">
