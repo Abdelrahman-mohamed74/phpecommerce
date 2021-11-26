@@ -60,7 +60,7 @@ if (isset($_POST['addtocart'])) {
                                 <?php 
                                     foreach ($stmt as $Oneproduct) {
                                           //  print_r($Oneproduct);
-                                         echo "  <div class='col-lg-3 col-md-6 col-12 mb-5'>
+                                         echo "  <div class='col-lg-4 col-md-6 col-12 mb-5'>
                                          <form id='productForm'>
                                                     <div class='product-box'>
                                                       <div class='image-content'>
@@ -136,7 +136,7 @@ if (isset($_POST['addtocart'])) {
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab">
                             <div class="row">
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
+                                <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
                                             <img src="images/product/66.jpg" alt="">
@@ -184,7 +184,7 @@ if (isset($_POST['addtocart'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
+                                <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
                                             <img src="images/product/09.jpg" alt="">
@@ -232,7 +232,7 @@ if (isset($_POST['addtocart'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
+                                <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
                                             <img src="images/product/20.jpg" alt="">
@@ -280,7 +280,7 @@ if (isset($_POST['addtocart'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
+                                <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
                                             <img src="images/product/18.jpg" alt="">
@@ -333,7 +333,7 @@ if (isset($_POST['addtocart'])) {
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                             aria-labelledby="pills-contact-tab">
                             <div class="row">
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
+                                <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
                                             <img src="images/product/70.jpg" alt="">
@@ -379,7 +379,7 @@ if (isset($_POST['addtocart'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
+                                <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
                                             <img src="images/product/20.jpg" alt="">
@@ -427,7 +427,7 @@ if (isset($_POST['addtocart'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
+                                <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
                                             <img src="images/product/16.jpg" alt="">

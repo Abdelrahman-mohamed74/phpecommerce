@@ -835,8 +835,7 @@ button {
 }
 
 .general-product .heading h4, .new-products .heading h4 {
-  /*color: #36415a;*/
-  color: #00f;
+  color: #36415a;
   margin-bottom: 20px;
   font-weight: 500;
   font-size: 25px;
@@ -1188,6 +1187,7 @@ button {
 
 .product-box .image-content img {
   width: 100%;
+  padding: 10px 15px;
   -o-object-fit: cover !important;
      object-fit: cover !important;
   -webkit-transition: all .5s linear;
