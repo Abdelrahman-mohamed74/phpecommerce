@@ -91,13 +91,13 @@ include('includes/header.php');
                                         <div class="col-md-6">
                                             <div class="info-content">
                                                 <h6>Number</h6>
-                                                <p class="text" name="mobile"></p>
+                                                <p class="text" name="mobile"><?php echo $_SESSION['Phone']; ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="info-content">
                                                 <h6>Gender</h6>
-                                                <p class="text" name="gender"></p>
+                                                <p class="text" name="gender"><?php echo $_SESSION['Gender']; ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
