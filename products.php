@@ -4,8 +4,21 @@ include('includes/header.php');
 
 $conn = $pdo->open();
 try{
+  $unmproducts = 6;
   $stmt = $conn->prepare("SELECT * FROM products");
   $stmt->execute();
+  $stmt = $stmt->rowCount();
+
+  if (isset($_GET['page'])) {
+      $page = $_GET['page'];
+  }else{
+      $page = 1;
+  }
+
+  $totalPage = ceil($stmt / $unmproducts);
+  $results = $conn->prepare("SELECT * FROM products LIMIT " . $unmproducts . " OFFSET " . ($page-1)*$unmproducts);
+  $results->execute();
+
   
 }
 catch(PDOException $e){
@@ -58,7 +71,7 @@ if (isset($_POST['addtocart'])) {
                             <div class="row">
 
                                 <?php 
-                                    foreach ($stmt as $Oneproduct) {
+                                    foreach ($results as $Oneproduct) {
                                           //  print_r($Oneproduct);
                                          echo "  <div class='col-lg-4 col-md-6 col-12 mb-5'>
                                          <form id='productForm'>
@@ -481,15 +494,18 @@ if (isset($_POST['addtocart'])) {
                 </div>
                 <div class="col-12">
                     <div class="block-27 mt-5  text-center">
-                        <ul>
-                            <li><a href="#">&lt;</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&gt;</a></li>
-                        </ul>
+                        <?php
+                        for ($count = 1; $count <= $totalPage; ++$count) { 
+                            if ($page == $count) {
+                                echo '<a class="a-pagination" href="products.php?page='.$count.'">'.$count.'</a> ';
+                            }else{
+                                echo '<a href="products.php?page='.$count.'">'.$count.'</a> ';
+                            }
+                        }
+
+
+
+                        ?>
                     </div>
                 </div>
             </div>
