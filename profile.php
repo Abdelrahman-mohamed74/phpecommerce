@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['save'])) {
+if (isset($_POST['submit'])) {
 $_SESSION['fullname'] = $_POST['fullnameedit'];
 
 //connect
@@ -14,6 +14,20 @@ $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 $stmt = $conn->prepare("UPDATE users SET firstname = :username WHERE email = :useremail");
     $stmt->bindParam(':username',$_POST['fullnameedit']);
     $stmt->bindParam(':useremail',$_SESSION['email'] );
+
+     $target_dir = "uploads/";
+               $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+              if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
+                $_SESSION['image']=$_FILES["fileToUpload"]["name"];
+
+          } else {
+            echo'<p style="color: red;">error</p>';
+             }
+
+    $stmt=$conn->prepare("UPDATE users SET photo = :fileToUpload WHERE email=:useremail" );
+    $stmt->bindParam(':fileToUpload',$_SESSION['image']);
+    $stmt->bindParam(':useremail',$_SESSION['email']);
     $stmt->execute();
     header("Location:profile.php");
 
@@ -39,8 +53,8 @@ include('includes/header.php');
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="side-nav">
-                            <div class="profile-img"> <img src="images/profile_man.png" alt="user-pic">
-                                <h6><?php echo $_SESSION['fullname']; ?></h6>
+                            <div class="profile-img"> <img src="uploads/<?php echo $_SESSION['image']; ?>" alt="user-pic">
+                                <h6><?php echo $_SESSION['fullname'];?></h6>
                             </div>
                             <div class="links">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
@@ -238,7 +252,7 @@ include('includes/header.php');
         </section>
         <!--Info Modal-->
         <!---------------------------------------- Edit ----------------------------------->
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
         <div class="modal info-modal fade" id="infoModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -250,8 +264,8 @@ include('includes/header.php');
                     </div>
                     <div class="modal-body">
                         <div class="image-container">
-                            <img src="images/profile_man.png" alt="user-pic">
-                            <input type="file" class="custom-file-input" id="input-profile" capture="">
+                            <img src="uploads/<?php echo $_SESSION['image']; ?>" alt="user-pic" name="image">
+                            <input type="file" class="custom-file-input" id="input-profile" name="fileToUpload"  capture="">
                             <button><i class="far fa-edit"></i></button>
                         </div>
                         <div class="row mt-5">
@@ -298,7 +312,7 @@ include('includes/header.php');
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="save" class="main-butn">Save</button>
+                        <button type="submit" class="main-butn" name="submit">Save</button>
                     </div>
 
                 </div>
