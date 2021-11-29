@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (isset($_POST['signin'])) {
     $emailAddress = $_POST['emailIn'];
@@ -21,7 +22,13 @@ try{
     
     if ($result) {
         foreach ($result as $user) {
+
             if ($user['password'] == md5($_POST['passwordIn'])) {
+                $_SESSION['fullname']=$user['firstname']; 
+                $_SESSION['email']=$user['email']; 
+                 $_SESSION['Phone'] =$user['Phone']; 
+                $_SESSION['Gender'] =$user['Gender']; 
+
                 header("Location:index.php");
             }else{
                 echo "email not found";

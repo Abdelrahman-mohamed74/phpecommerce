@@ -6,12 +6,16 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 //inputs
 $userfirstnameUp = $_POST['firstname'];
 $userLastnamenameUp = $_POST['Lastname'];
+$Gender = $_POST['Gender'];
+$Phone = $_POST['Phone'];
 $emailUp    = $_POST['email'];
 $passwordUp = $_POST['password'];
 $passwordUp = md5($passwordUp);
 
 $_SESSION['fullname'] = $_POST['firstname'];
 $_SESSION['email'] = $_POST['email'];
+$_SESSION['Gender'] = $_POST['Gender'];
+$_SESSION['Phone'] = $_POST['Phone'];
 //connect
 $servername     = "mysql:host=localhost;dbname=ecomm";
 $serverusername = "root";
@@ -21,11 +25,13 @@ try{
 $conn = new PDO($servername,$serverusername,$serverpassword);
 $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$stmt = $conn->prepare("INSERT INTO users(firstname,lastname,email,password)
-    VALUES(:firstname,:Lastname, :email,:password)");
+$stmt = $conn->prepare("INSERT INTO users(firstname,lastname,email,password,Phone,Gender)
+    VALUES(:firstname,:Lastname, :email,:password ,:Phone,:Gender)");
 
         $stmt->bindParam(':firstname',$userfirstnameUp);
         $stmt->bindParam(':Lastname',$userLastnamenameUp);
+        $stmt->bindParam(':Gender',$Gender);
+        $stmt->bindParam(':Phone',$Phone);
         $stmt->bindParam(':email',$emailUp);
         $stmt->bindParam(':password',$passwordUp);
 
@@ -99,6 +105,23 @@ $stmt = $conn->prepare("INSERT INTO users(firstname,lastname,email,password)
                                 <div class="form-group">
                                     <input type="text" class="form-control" autocomplete="off" autofocus required name="email" value="<?php echo (isset($_SESSION['email'])) ? $_SESSION['email'] : '' ?>"/>
                                     <label class="floating-label">Email Address </label>
+                                </div>
+                                 <div class="form-group">
+                                    <input type="text" class="form-control" autocomplete="off" autofocus required name="Phone"  value=""/>
+                                    <label class="floating-label"> Phone Number </label>
+                                </div>
+                                 <div> <p class="ml-2">Gender :</p>
+                                <span>
+                                  
+                                    <input type="radio" value="Male" autocomplete="off" autofocus required name="Gender" />
+                                      <label>Male</label>
+                                </span>
+                                <span>
+                                    
+                                    <input type="radio" value="female" autocomplete="off" autofocus required name="Gender" />
+                                    <label>Female</label>
+                                </span>
+
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="password" autocomplete="off" autofocus
