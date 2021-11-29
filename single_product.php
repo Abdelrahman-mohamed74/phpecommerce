@@ -14,7 +14,7 @@ include('includes/header.php');
             $selcetedProd = $stmt->fetchAll();
 
             // All Product In DB To Display In Botoom Slider Show
-            $allProducts = $conn->prepare("SELECT * FROM products");
+            $allProducts = $conn->prepare("SELECT * FROM products LIMIT 20,8");
             $allProducts->execute();
         } 
         catch(PDOException $e){
