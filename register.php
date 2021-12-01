@@ -1,6 +1,11 @@
 <?php
-
 session_start();
+include('includes/conn.php');
+?>
+
+<?php
+
+
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 //inputs
@@ -21,9 +26,8 @@ $servername     = "mysql:host=localhost;dbname=ecomm";
 $serverusername = "root";
 $serverpassword = "";
 
+        $conn = $pdo->open();
 try{
-$conn = new PDO($servername,$serverusername,$serverpassword);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 $stmt = $conn->prepare("INSERT INTO users(firstname,lastname,email,password,Phone,Gender)
     VALUES(:firstname,:Lastname, :email,:password ,:Phone,:Gender)");
@@ -43,6 +47,7 @@ $stmt = $conn->prepare("INSERT INTO users(firstname,lastname,email,password,Phon
 }
 
 }
+$conn = $pdo->close();
 
 ?>
 
@@ -134,6 +139,7 @@ $stmt = $conn->prepare("INSERT INTO users(firstname,lastname,email,password,Phon
                                     <label class="floating-label"> Confirm password </label>
                                 </div>
                                 <button class="submit-btn" name="signup"> Creat Account </button> 
+                                <a class="submit-btn" name="signup" href="index.php"> Back Home </a> 
                             </form>
                         </div>
                     </div>

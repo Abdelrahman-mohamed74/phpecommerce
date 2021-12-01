@@ -1,6 +1,11 @@
 
+    <?php
+session_start();
+include('includes/conn.php');
+?>
 <?php
-include('includes/header.php');
+
+// include('includes/header.php');
 
     if (isset($_GET['Oneid'])) {
         
@@ -8,7 +13,7 @@ include('includes/header.php');
         try{
             // One Product To Display By It's ID And It's category
             $stmt = $conn->prepare("SELECT * ,category.cat_name
-              FROM products,category WHERE products.id = :product_id && products.category_id = category.id");
+              FROM products,category WHERE products.prod_id = :product_id && products.category_id = category.id");
             $stmt->bindparam(":product_id",$_GET['Oneid']);
             $stmt->execute();
             $selcetedProd = $stmt->fetchAll();
@@ -23,7 +28,10 @@ include('includes/header.php');
         $pdo->close();
     }
 ?>
+<?php
+    include('includes/header.php');
 
+?>
             <!--start product-details -->
             <section class="product-details">
                 <div class="container">
@@ -199,7 +207,7 @@ include('includes/header.php');
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="single_product.php?Oneid='.$showpro["id"].'"" data-toggle="tooltip" data-placement="top"
+                                                    <a href="single_product.php?Oneid='.$showpro["prod_id"].'"" data-toggle="tooltip" data-placement="top"
                                                         title="View Details  ">
                                                         <i class="far fa-dot-circle"></i>
                                                     </a>
@@ -213,7 +221,7 @@ include('includes/header.php');
                                             </ul>
                                         </div>
                                         <div class="product-content">
-                                            <a href="single_product.php?Oneid='.$showpro["id"].'">'.$showpro["name"].'</a>
+                                            <a href="single_product.php?Oneid='.$showpro["prod_id"].'">'.$showpro["name"].'</a>
                                             <p>'.$showpro["price"].'</p>
                                             <ul class="rate">
                                                 <li class="active">

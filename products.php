@@ -1,5 +1,7 @@
 <?php
-include('includes/header.php');
+session_start();
+include('includes/conn.php');
+
 
 
 $conn = $pdo->open();
@@ -52,7 +54,10 @@ if (isset($_POST['addtocart'])) {
 
 ?>
 
+<?php
+    include('includes/header.php');
 
+?>
     <!-- start shop -->
     <section class="general-product">
         <div class="container">
@@ -77,7 +82,7 @@ if (isset($_POST['addtocart'])) {
                                          <form id='productForm'>
                                                     <div class='product-box'>
                                                       <div class='image-content'>
-                                                      <input id='hide' type='hidden' value='".$Oneproduct['id']."' name='prodiidd'>
+                                                      <input id='hide' type='hidden' value='".$Oneproduct['prod_id']."' name='prodiidd'>
                                                         <img src='images/products/".$Oneproduct['photo']."' alt='' name='img'/>
                                                         <ul class='add-items'>  
                                                           <li>
@@ -93,7 +98,7 @@ if (isset($_POST['addtocart'])) {
                                                           </li>
                                                           <li>
                                                             <a
-                                                              href='single_product.php?Oneid=".$Oneproduct['id']."'
+                                                              href='single_product.php?Oneid=".$Oneproduct['prod_id']."'
                                                               data-toggle='tooltip'
                                                               data-placement='top'
                                                               title=' View Details'
@@ -103,7 +108,7 @@ if (isset($_POST['addtocart'])) {
                                                           </li>
                                                           <li>
                                                             <a
-                                                              href='favorite.php?Oneid=".$Oneproduct['id']."'
+                                                              href='favorite.php?Oneid=".$Oneproduct['prod_id']."'
                                                               data-toggle='tooltip'
                                                               data-placement='top'
                                                               title='  Add to Favourit'
@@ -114,7 +119,7 @@ if (isset($_POST['addtocart'])) {
                                                         </ul>
                                                       </div>
                                                       <div class='product-content'>
-                                                        <a href='single_product.php?Oneid=".$Oneproduct['id']."'
+                                                        <a href='single_product.php?Oneid=".$Oneproduct['prod_id']."'
                                                           name='name' >".$Oneproduct['name']."</a
                                                         >
                                                         <p name='pric'>".$Oneproduct['price']."</p>

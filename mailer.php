@@ -20,9 +20,9 @@ $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, 
 $mail->Port = 587;                                    // TCP port to connect to
 
 $mail->setFrom('infoprog79@gmail.com', 'emailproject20');
-$mail->addAddress($emailconf);     // Add a recipient
+$mail->addAddress($emailconf , $_SESSION['fullname']);     // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
-$mail->addReplyTo($emailconf);
+$mail->addReplyTo($emailconf , $_SESSION['fullname']);
 //$mail->addCC('cc@example.com');
 //$mail->addBCC('bcc@example.com');
 
@@ -30,8 +30,8 @@ $mail->addReplyTo($emailconf);
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'Here is the subject';
-$mail->Body    = $randomm;
+$mail->Subject = 'Forget Password';
+$mail->Body    = '<h3> Hi '.$_SESSION['fullname'].' </h3>  <p> Ur Code For Reset Ur Password Is : '.$randomm.' </p>';
 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if(!$mail->send()) {

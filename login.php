@@ -1,5 +1,8 @@
 <?php
 session_start();
+include('includes/conn.php');
+
+
 
 if (isset($_POST['signin'])) {
     $emailAddress = $_POST['emailIn'];
@@ -108,6 +111,7 @@ try{
                                     <a class="forget-pass" href="recover_mail.php"> Fogrt Password ?</a>
                                 </div>
                                 <button class="submit-btn" name="signin"> Log in </button>
+                                <a class="submit-btn" name="signin" href="index.php">  Back To Home</a>
                             </form>
                         </div>
                     </div>

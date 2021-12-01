@@ -1,4 +1,10 @@
 <?php
+
+session_start();
+include('includes/conn.php');
+
+$conn = $pdo->open();
+
 $randomm ="";
 
 $n = 7;
@@ -18,23 +24,17 @@ if (isset($_POST['conf'])) {
 
     $emailconf = $_POST['emailconf'];
 
-    //connect
-    $servername     = "mysql:host=localhost;dbname=shop";
-    $serverusername = "root";
-    $serverpassword = "";
 
 try{
-    $conn = new PDO($servername,$serverusername,$serverpassword);
-    $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE UserEmail =:useremail");
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email =:useremail");
     $stmt->bindParam(':useremail',$emailconf);
     $stmt->execute();
     $result = $stmt->fetchAll();
     
     if ($result) {
         $randomm = getName($n);
-        $stmt = $conn->prepare("UPDATE users SET Code = :lastcode WHERE UserEmail =:useremail");
+        $stmt = $conn->prepare("UPDATE users SET Code = :lastcode WHERE email =:useremail");
         $stmt->bindParam(':lastcode',$randomm);
         $stmt->bindParam(':useremail',$emailconf);
         $stmt->execute();
@@ -51,6 +51,7 @@ try{
     }
     
 }
+$conn = $pdo->close();
 
 ?>
 

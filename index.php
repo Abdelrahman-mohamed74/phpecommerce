@@ -1,22 +1,40 @@
 <?php
+session_start();
+include('includes/conn.php');
 
-include('includes/header.php');
+$conn = $pdo->open();
+
+if (isset($_SESSION['fullname'])) {
+    
+        $get = $conn->prepare("SELECT photo FROM users WHERE email = :useremail");
+        $get->bindParam(':useremail',$_SESSION['email']);
+        $get->execute();
+        $photo = $get->fetchColumn();
+        if (!empty($photo)) {
+            $_SESSION['image'] = $photo;
+        } else {
+            $_SESSION['image'] = 'download.png';
+        }   
+      
+             
+}
+
+
+
 $take = array('Laptops','Desktop PC','Tablets','Smart Phones');
 
-if (isset($_GET['id'])) {
-   $ok = $_GET['id'];
+if (isset($_GET['catid'])) {
+   $getCat = $_GET['catid'];
 } else{
-    $ok = $take[0];
+    $getCat = $take[0];
 }
-// $get = $_GET['id'];
-$conn = $pdo->open();
 try{
 
 
          // One Product To Display By It's ID And It's category
             $stmt = $conn->prepare("SELECT * ,category.cat_name ,category.id
-              FROM products,category WHERE  products.category_id = category.id  && category.cat_name =:id");
-            $stmt->bindparam(":id",$ok);
+              FROM products,category WHERE  products.category_id = category.id  && category.cat_name =:ID");
+            $stmt->bindparam(":ID",$getCat);
             $stmt->execute();
             $selcetedProd = $stmt->fetchAll();
     
@@ -31,31 +49,14 @@ catch(PDOException $e){
 }
 
 
-    //    try{
-
-
-    //          // One Product To Display By It's ID And It's category
-    //             $lol = $conn->prepare("SELECT * ,category.cat_name ,category.id
-    //               FROM products,category WHERE  products.category_id = category.id  && category.cat_name =:iid");
-    //             $lol->bindparam(":iid",$_GET['getId']);
-    //             $lol->execute();
-    //             $loll = $lol->fetchAll();
-    //             if ($loll) {
-    //                 echo'3aaaaaash';
-    //             }
-        
-    //             // All Product In DB To Display In Botoom Slider Show
-    //             // $allProducts = $conn->prepare("SELECT * FROM products");
-    //             // $allProducts->execute();
-
-    //   }
-    // catch(PDOException $e){
-    //   echo "There is some problem in connection: " . $e->getMessage();
-    // }
-
+   
 
 $pdo->close();
 
+
+?>
+<?php
+    include('includes/header.php');
 
 ?>
 
@@ -104,12 +105,12 @@ $pdo->close();
                                    for ($i=0; $i <= count($take)-1; $i++) { 
 
                                        echo '<li class="nav-item">
-                                        <a href="index.php?id='.$take[$i].'" class="nav-link " data-toggle="pills" id="dn" value="'.$take[$i].'" >
+                                        <a href="index.php?catid='.$take[$i].'" class="nav-link " data-toggle="pills" id="dn" value="'.$take[$i].'" >
                                             
                                             '.$take[$i].'
                                         </a>
 
-                                    </li>';
+                                            </li>';
                                    }
 
                                     ?>
@@ -132,19 +133,19 @@ $pdo->close();
                                             <img src="images/products/'.$product["photo"].'" alt="">
                                             <ul class="add-items">
                                                 <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
+                                                    <a href="cart.php?Oneid='.$product["prod_id"].'" data-toggle="tooltip" data-placement="top"
                                                         title="  Add to cart">
                                                         <i class="fas fa-shopping-basket"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="single_product.php" data-toggle="tooltip"
+                                                    <a href="single_product.php?Oneid='.$product["prod_id"].'" data-toggle="tooltip"
                                                         data-placement="top" title=" View Details">
                                                         <i class="far fa-dot-circle"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
+                                                    <a href="favorite.php?Oneid='.$product["prod_id"].'" data-toggle="tooltip" data-placement="top"
                                                         title="  Add to Favourit">
                                                         <i class="far fa-heart"></i>
                                                     </a>
@@ -152,7 +153,7 @@ $pdo->close();
                                             </ul>
                                         </div>
                                         <div class="product-content">
-                                            <a href="single_product.php">'.$product["name"].'</a>
+                                            <a href="single_product.php?Oneid='.$product["prod_id"].'">'.$product["name"].'</a>
                                             <p>'.$product["price"].'</p>
                                             <ul class="rate">
                                                 <li class="active">
@@ -179,396 +180,8 @@ $pdo->close();
 
                               ?>
                                 
-                        <hr>
-                       <!--  <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                            aria-labelledby="pills-profile-tab">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/66.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
-                                                        title="  Add to cart">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip"
-                                                        data-placement="top" title=" View Details ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title="   Add to Favourite">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/09.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
-                                                        title="  Add to cart">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip"
-                                                        data-placement="top" title="  Add to Favourite ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title="   Add to Favourite">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/20.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
-                                                        title=" Add to cart ">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip"
-                                                        data-placement="top" title=" View Details ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title="  Add to Favourite ">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/18.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
-                                                        title="  Add to cart">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip"
-                                                        data-placement="top" title="View Details  ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title="   Add to Favourite">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                            aria-labelledby="pills-contact-tab">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/70.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
-                                                        title="  Add to cart">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip"
-                                                        data-placement="top" title=" View Details ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title="Add to Favourite">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/20.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
-                                                        title="  Add to cart">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip"
-                                                        data-placement="top" title="View Details ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title="Add to Favourite">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/16.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
-                                                        title="  Add to cart">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip"
-                                                        data-placement="top" title="View Details ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title="  Add to Favourite">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php"> Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-12 mb-5">
-                                    <div class="product-box">
-                                        <div class="image-content">
-                                            <img src="images/product/11.jpg" alt="">
-                                            <ul class="add-items">
-                                                <li>
-                                                    <a href="cart.php" data-toggle="tooltip" data-placement="top"
-                                                        title=" Add to cart ">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="single_product.php" data-toggle="tooltip"
-                                                        data-placement="top" title="View Details  ">
-                                                        <i class="far fa-dot-circle"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="favorite.php" data-toggle="tooltip" data-placement="top"
-                                                        title="   Add to Favourite">
-                                                        <i class="far fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-content">
-                                            <a href="single_product.php">Block-colored Hooded Top</a>
-                                            <p>39.50 $</p>
-                                            <ul class="rate">
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li class="active">
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fas fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-               -->                      </div>
+                        
+                                           </div>
                                 </div>
                             </div>
                         </div>
@@ -635,19 +248,19 @@ $pdo->close();
                                     <img src="images/products/'.$onerow['photo'].'" alt="">
                                     <ul class="add-items">
                                         <li>
-                                            <a href="cart.php" data-toggle="tooltip" data-placement="top"
-                                                title="ا Add to cartه">
+                                            <a href="cart.php?Oneid='.$onerow['prod_id'].'" data-toggle="tooltip" data-placement="top"
+                                                title="ا Add to cartه>
                                                 <i class="fas fa-shopping-basket"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="single_product.php?Oneid='.$onerow['id'].'" data-toggle="tooltip" data-placement="top"
+                                            <a href="single_product.php?Oneid='.$onerow['prod_id'].'" data-toggle="tooltip" data-placement="top"
                                                 title="View Details  ">
                                                 <i class="far fa-dot-circle"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="favorite.php" data-toggle="tooltip" data-placement="top"
+                                            <a href="favorite.php?Oneid='.$onerow['prod_id'].'" data-toggle="tooltip" data-placement="top"
                                                 title=" Add to cart ">
                                                 <i class="far fa-heart"></i>
                                             </a>
@@ -655,7 +268,7 @@ $pdo->close();
                                     </ul>
                                 </div>
                                 <div class="product-content">
-                                    <a href="single_product.php?Oneid='.$onerow['id'].'">'.$onerow['name'].'</a>
+                                    <a href="single_product.php?Oneid='.$onerow['prod_id'].'">'.$onerow['name'].'</a>
                                     <p>'.$onerow['price'].' $</p>
                                     <ul class="rate">
                                         <li class="active">

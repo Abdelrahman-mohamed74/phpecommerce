@@ -1,7 +1,9 @@
 <?php
+session_start();
+include('includes/conn.php');
+ include('includes/header.php');
 
-include('includes/header.php');
-?>
+    ?>
 
 
     <main class="container-fluid px-0">

@@ -1,6 +1,8 @@
 <?php
-
+session_start();
+include('includes/conn.php');
 include('includes/header.php');
+
 ?>
 
     <!-- start shop -->

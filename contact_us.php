@@ -1,6 +1,13 @@
 <?php
+session_start();
+include('includes/conn.php');
+?>
 
-if($_SERVER['REQUEST_METHOD']=='POST')
+<?php
+
+
+
+if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['btn']))
 {
     $fullname=$_POST['fullname'];
     $mobile=$_POST['tel'];
@@ -9,49 +16,17 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     $service=$_POST['service'];
     $desc=$_POST['description'];
 
-   require 'mail/PHPMailerAutoload.php';
-
-$mail = new PHPMailer;
-
-//$mail->SMTPDebug = 3;                               // Enable verbose debug output
-
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'emailproject20@gmail.com';                 // SMTP username
-$mail->Password = '123456789@@';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                    // TCP port to connect to
-
-$mail->setFrom('emailproject20@gmail.com', 'emailproject20');
-$mail->addAddress('emailproject20@gmail.com', 'emailproject20');     // Add a recipient
-//$mail->addAddress('ellen@example.com');               // Name is optional
-$mail->addReplyTo($email, $fullname);
-//$mail->addCC('cc@example.com');
-//$mail->addBCC('bcc@example.com');
-
-//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-$mail->isHTML(true);                                  // Set email format to HTML
-
-$mail->Subject = 'Problem From Website User';
-$mail->Body    =  'country : '.$country."<br> service : ".$service."<br> description :  ".$desc;
-$mail->AltBody = 'Problem From Website User';
-
-if(!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} 
-else {
-    echo 'Message has been sent';
-} 
+    // Get PHP Mailer
+    include('ContactMailer.php');
+  
 }
 
 ?>
 <?php
+    include('includes/header.php');
 
-include('includes/header.php');
 ?>
+
     <!--start contact us-->
     <section class="contact-us">
         <div class="container">
@@ -98,7 +73,7 @@ include('includes/header.php');
                             </div>
                             <div class="col-12">
                                 <div class="button-content">
-                                    <button class="custom-btn blue-btn ">Submit </button>
+                                    <button class="custom-btn blue-btn " name="btn">Submit </button>
                                 </div>
                             </div>
                         </div>

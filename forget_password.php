@@ -1,16 +1,17 @@
 <?php
+session_start();
+include('includes/conn.php');
+    
+    $conn = $pdo->open();
+    
 if (isset($_GET['Confirm2'])) {
     $code        = $_GET['code'];
     $passconfirm =$_GET['passConfirm'];
     $passconfirm = md5($passconfirm);
     //connect
-    $servername     = "mysql:host=localhost;dbname=ecomm";
-    $serverusername = "root";
-    $serverpassword = "";
+
 
 try{
-    $conn = new PDO($servername,$serverusername,$serverpassword);
-    $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
     $stmt = $conn->prepare("SELECT Code FROM users WHERE Code=:code");
     $stmt->bindParam(':code',$code);
@@ -24,7 +25,7 @@ try{
                 $stmt->bindParam(':passconfirm',$passconfirm);
                 $stmt->bindParam(':code',$code);
                 $stmt->execute();
-                header("Location:index.php");
+                header("Location:login.php");
             }else{
                 echo "try again";
             }
@@ -38,6 +39,7 @@ try{
 }
 
 }
+$conn = $pdo->close();
 
 
 ?>

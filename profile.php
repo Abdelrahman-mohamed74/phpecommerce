@@ -1,48 +1,55 @@
 <?php
+session_start();
+include('includes/conn.php');
+?>
+
+<?php
+$conn = $pdo->open();
+
 if (isset($_POST['submit'])) {
 $_SESSION['fullname'] = $_POST['fullnameedit'];
 
-//connect
-$servername     = "mysql:host=localhost;dbname=ecomm";
-$serverusername = "root";
-$serverpassword = "";
 
 try{
-$conn = new PDO($servername,$serverusername,$serverpassword);
-$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$stmt = $conn->prepare("UPDATE users SET firstname = :username WHERE email = :useremail");
+
+    $stmt = $conn->prepare("UPDATE users SET firstname = :username WHERE email = :useremail");
     $stmt->bindParam(':username',$_POST['fullnameedit']);
     $stmt->bindParam(':useremail',$_SESSION['email'] );
+    $stmt->execute();
 
-     $target_dir = "uploads/";
+
+     $target_dir = "user_photos/";
                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
               if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
                 $_SESSION['image']=$_FILES["fileToUpload"]["name"];
 
           } else {
-            echo'<p style="color: red;">error</p>';
+                
              }
+
 
     $stmt=$conn->prepare("UPDATE users SET photo = :fileToUpload WHERE email=:useremail" );
     $stmt->bindParam(':fileToUpload',$_SESSION['image']);
     $stmt->bindParam(':useremail',$_SESSION['email']);
     $stmt->execute();
-    header("Location:profile.php");
+
 
 }catch(PDOException $e){
         echo $e->getmessage();
 }
-$conn = null;
-}
 
+} else{
+
+}
+$conn = $pdo->close();
 
 ?>
 
 <?php
+    include('includes/header.php');
 
-include('includes/header.php');
 ?>
 
     <main>
@@ -53,7 +60,7 @@ include('includes/header.php');
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="side-nav">
-                            <div class="profile-img"> <img src="uploads/<?php echo $_SESSION['image']; ?>" alt="user-pic">
+                            <div class="profile-img"> <img src="user_photos/<?php echo $_SESSION['image']; ?>" alt="user-pic">
                                 <h6><?php echo $_SESSION['fullname'];?></h6>
                             </div>
                             <div class="links">
@@ -264,7 +271,7 @@ include('includes/header.php');
                     </div>
                     <div class="modal-body">
                         <div class="image-container">
-                            <img src="uploads/<?php echo $_SESSION['image']; ?>" alt="user-pic" name="image">
+                            <img src="user_photos/<?php echo $_SESSION['image']; ?>" alt="user-pic" name="image">
                             <input type="file" class="custom-file-input" id="input-profile" name="fileToUpload"  capture="">
                             <button><i class="far fa-edit"></i></button>
                         </div>

@@ -1,7 +1,4 @@
-<?php
-session_start();
-include 'includes/conn.php';
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +91,15 @@ include 'includes/conn.php';
                             <?php
                             if(isset($_SESSION['fullname'])):
                             ?>
+                            <li class=" profile-dropdown">
+                               <div class="profile-name">
+                                        <div class="image-content">
+                                           <a href="profile.php"> <img style='width: 50px!important;' src="user_photos/<?php echo $_SESSION['image']; ?>" alt=""></a>
+                                        </div>
+                                    </div>
+                            </li>
                             <li class="dropdown profile-dropdown">
+                                    
                                 <a class="dropdown-toggle" href="profile.php" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="far fa-user"></i>
@@ -102,7 +107,7 @@ include 'includes/conn.php';
                                 <div class="dropdown-menu" aria-labelledby="userDropdown">
                                     <div class="profile-name">
                                         <div class="image-content">
-                                            <img src="images/about/profile_man.png" alt="">
+                                            <img style='width: 50px!important;'  src="user_photos/<?php echo $_SESSION['image']; ?>" alt="" >
                                         </div>
                                         <div class="content">
                                             <a href="profile.php"><?php echo $_SESSION['fullname'];?></a>
@@ -122,7 +127,7 @@ include 'includes/conn.php';
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="login.php">
+                                            <a href="reset.php">
                                                 <i class="fas fa-sign-out-alt"></i>
                                                 <span> Log Out</span>
                                             </a>
@@ -134,6 +139,7 @@ include 'includes/conn.php';
                             else:
 
                             ?>
+
                          <li class="dropdown profile-dropdown">
                                 <a class="dropdown-toggle" href="profile.php" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
