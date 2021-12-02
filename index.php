@@ -4,20 +4,7 @@ include('includes/conn.php');
 
 $conn = $pdo->open();
 
-if (isset($_SESSION['fullname'])) {
-    
-        $get = $conn->prepare("SELECT photo FROM users WHERE email = :useremail");
-        $get->bindParam(':useremail',$_SESSION['email']);
-        $get->execute();
-        $photo = $get->fetchColumn();
-        if (!empty($photo)) {
-            $_SESSION['image'] = $photo;
-        } else {
-            $_SESSION['image'] = 'download.png';
-        }   
-      
-             
-}
+
 
 
 
@@ -32,8 +19,8 @@ try{
 
 
          // One Product To Display By It's ID And It's category
-            $stmt = $conn->prepare("SELECT * ,category.cat_name ,category.id
-              FROM products,category WHERE  products.category_id = category.id  && category.cat_name =:ID");
+            $stmt = $conn->prepare("SELECT * ,category.name ,category.id
+              FROM products,category WHERE  products.category_id = category.id  && category.name =:ID");
             $stmt->bindparam(":ID",$getCat);
             $stmt->execute();
             $selcetedProd = $stmt->fetchAll();
@@ -133,19 +120,19 @@ $pdo->close();
                                             <img src="images/products/'.$product["photo"].'" alt="">
                                             <ul class="add-items">
                                                 <li>
-                                                    <a href="cart.php?Oneid='.$product["prod_id"].'" data-toggle="tooltip" data-placement="top"
+                                                    <a href="cart.php?Oneid='.$product["id"].'" data-toggle="tooltip" data-placement="top"
                                                         title="  Add to cart">
                                                         <i class="fas fa-shopping-basket"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="single_product.php?Oneid='.$product["prod_id"].'" data-toggle="tooltip"
+                                                    <a href="single_product.php?Oneid='.$product["id"].'" data-toggle="tooltip"
                                                         data-placement="top" title=" View Details">
                                                         <i class="far fa-dot-circle"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="favorite.php?Oneid='.$product["prod_id"].'" data-toggle="tooltip" data-placement="top"
+                                                    <a href="favorite.php?Oneid='.$product["id"].'" data-toggle="tooltip" data-placement="top"
                                                         title="  Add to Favourit">
                                                         <i class="far fa-heart"></i>
                                                     </a>
@@ -153,7 +140,7 @@ $pdo->close();
                                             </ul>
                                         </div>
                                         <div class="product-content">
-                                            <a href="single_product.php?Oneid='.$product["prod_id"].'">'.$product["name"].'</a>
+                                            <a href="single_product.php?Oneid='.$product["id"].'">'.$product["name"].'</a>
                                             <p>'.$product["price"].'</p>
                                             <ul class="rate">
                                                 <li class="active">
@@ -248,19 +235,19 @@ $pdo->close();
                                     <img src="images/products/'.$onerow['photo'].'" alt="">
                                     <ul class="add-items">
                                         <li>
-                                            <a href="cart.php?Oneid='.$onerow['prod_id'].'" data-toggle="tooltip" data-placement="top"
+                                            <a href="cart.php?Oneid='.$onerow['id'].'" data-toggle="tooltip" data-placement="top"
                                                 title="ا Add to cartه>
                                                 <i class="fas fa-shopping-basket"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="single_product.php?Oneid='.$onerow['prod_id'].'" data-toggle="tooltip" data-placement="top"
+                                            <a href="single_product.php?Oneid='.$onerow['id'].'" data-toggle="tooltip" data-placement="top"
                                                 title="View Details  ">
                                                 <i class="far fa-dot-circle"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="favorite.php?Oneid='.$onerow['prod_id'].'" data-toggle="tooltip" data-placement="top"
+                                            <a href="favorite.php?Oneid='.$onerow['id'].'" data-toggle="tooltip" data-placement="top"
                                                 title=" Add to cart ">
                                                 <i class="far fa-heart"></i>
                                             </a>
@@ -268,7 +255,7 @@ $pdo->close();
                                     </ul>
                                 </div>
                                 <div class="product-content">
-                                    <a href="single_product.php?Oneid='.$onerow['prod_id'].'">'.$onerow['name'].'</a>
+                                    <a href="single_product.php?Oneid='.$onerow['id'].'">'.$onerow['name'].'</a>
                                     <p>'.$onerow['price'].' $</p>
                                     <ul class="rate">
                                         <li class="active">

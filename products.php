@@ -82,7 +82,7 @@ if (isset($_POST['addtocart'])) {
                                          <form id='productForm'>
                                                     <div class='product-box'>
                                                       <div class='image-content'>
-                                                      <input id='hide' type='hidden' value='".$Oneproduct['prod_id']."' name='prodiidd'>
+                                                      <input id='hide' type='hidden' value='".$Oneproduct['id']."' name='prodiidd'>
                                                         <img src='images/products/".$Oneproduct['photo']."' alt='' name='img'/>
                                                         <ul class='add-items'>  
                                                           <li>
@@ -98,7 +98,7 @@ if (isset($_POST['addtocart'])) {
                                                           </li>
                                                           <li>
                                                             <a
-                                                              href='single_product.php?Oneid=".$Oneproduct['prod_id']."'
+                                                              href='single_product.php?Oneid=".$Oneproduct['id']."'
                                                               data-toggle='tooltip'
                                                               data-placement='top'
                                                               title=' View Details'
@@ -108,7 +108,7 @@ if (isset($_POST['addtocart'])) {
                                                           </li>
                                                           <li>
                                                             <a
-                                                              href='favorite.php?Oneid=".$Oneproduct['prod_id']."'
+                                                              href='favorite.php?Oneid=".$Oneproduct['id']."'
                                                               data-toggle='tooltip'
                                                               data-placement='top'
                                                               title='  Add to Favourit'
@@ -119,7 +119,7 @@ if (isset($_POST['addtocart'])) {
                                                         </ul>
                                                       </div>
                                                       <div class='product-content'>
-                                                        <a href='single_product.php?Oneid=".$Oneproduct['prod_id']."'
+                                                        <a href='single_product.php?Oneid=".$Oneproduct['id']."'
                                                           name='name' >".$Oneproduct['name']."</a
                                                         >
                                                         <p name='pric'>".$Oneproduct['price']."</p>

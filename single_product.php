@@ -12,8 +12,8 @@ include('includes/conn.php');
         $conn = $pdo->open();
         try{
             // One Product To Display By It's ID And It's category
-            $stmt = $conn->prepare("SELECT * ,category.cat_name
-              FROM products,category WHERE products.prod_id = :product_id && products.category_id = category.id");
+            $stmt = $conn->prepare("SELECT * ,category.name
+              FROM products,category WHERE products.id = :product_id && products.category_id = category.id");
             $stmt->bindparam(":product_id",$_GET['Oneid']);
             $stmt->execute();
             $selcetedProd = $stmt->fetchAll();
@@ -48,7 +48,7 @@ include('includes/conn.php');
                         </div>
                         <div class="col-lg-8 col-md-6 col-12 mb-5">
                             <div class="content">
-                                <h3 class="type">'.$singelPro['cat_name'].'</h3>
+                                <h3 class="type">'.$singelPro['name'].'</h3>
                                 <h3>'.$singelPro["name"].'</h3>
                                 <h3  class="price">'.$singelPro["price"].'$</h3>
                                 <ul class="rate">
@@ -89,7 +89,7 @@ include('includes/conn.php');
                                     <li>
                                         <strong>Department</strong>
                                         <span>
-                                             '.$singelPro['cat_name'].'</span>
+                                             '.$singelPro['name'].'</span>
                                     </li>
                                     <li>
                                         <strong>Search Code </strong>
@@ -207,7 +207,7 @@ include('includes/conn.php');
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="single_product.php?Oneid='.$showpro["prod_id"].'"" data-toggle="tooltip" data-placement="top"
+                                                    <a href="single_product.php?Oneid='.$showpro["id"].'"" data-toggle="tooltip" data-placement="top"
                                                         title="View Details  ">
                                                         <i class="far fa-dot-circle"></i>
                                                     </a>
@@ -221,7 +221,7 @@ include('includes/conn.php');
                                             </ul>
                                         </div>
                                         <div class="product-content">
-                                            <a href="single_product.php?Oneid='.$showpro["prod_id"].'">'.$showpro["name"].'</a>
+                                            <a href="single_product.php?Oneid='.$showpro["id"].'">'.$showpro["name"].'</a>
                                             <p>'.$showpro["price"].'</p>
                                             <ul class="rate">
                                                 <li class="active">

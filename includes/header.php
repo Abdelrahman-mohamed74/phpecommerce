@@ -89,7 +89,7 @@
                             </li>
 
                             <?php
-                            if(isset($_SESSION['fullname'])):
+                            if(isset($_SESSION['user'])):
                             ?>
                             <li class=" profile-dropdown">
                                <div class="profile-name">
