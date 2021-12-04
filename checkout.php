@@ -1,8 +1,8 @@
 <?php
+    include('includes/header.php');
 
-include('includes/header.php');
 ?>
-        <!--start main-->
+     <!--start main-->
         <main>
             <!--Start chechout-pg-->
             <section class="chechout-pg">

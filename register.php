@@ -130,7 +130,7 @@ $conn = $pdo->close();
                                     <label class="floating-label">Email Address </label>
                                 </div>
                                  <div class="form-group">
-                                    <input type="text" class="form-control" autocomplete="off" autofocus required name="Phone"  value=""/>
+                                    <input type="text" class="form-control" autocomplete="off" autofocus required name="Phone"  value="<?php echo (isset($_SESSION['Phone'])) ? $_SESSION['Phone'] : '' ?>"/>
                                     <label class="floating-label"> Phone Number </label>
                                 </div>
                                  <div> <p class="ml-2">Gender :</p>
