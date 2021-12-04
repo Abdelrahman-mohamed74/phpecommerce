@@ -142,6 +142,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
     <script src="js/lib/flipdown.js"></script>
     <script src="js/main.js"></script>
+	<script>
+	$(document).ready(function(){  
+      load_data();  
+      function load_data(page)  
+      {  
+           $.ajax({  
+                url:"pagination.php",  
+                method:"GET",  
+                data:{page:page},  
+                success:function(data){  
+                     $('#pagination_data').html(data);  
+                }  
+           })  
+      }  
+      $(document).on('click', '.pagination_link', function(){  
+           var page = $(this).attr("id");  
+           load_data(page);  
+      });  
+ }); 
+	</script>
 
 
 </body>
