@@ -117,7 +117,7 @@ $pdo->close();
                                   echo '  <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/'.$product["photo"].'" alt="">
+                                            <img src="images/products/'.$product["photo"].'" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.php?Oneid='.$product["id"].'" data-toggle="tooltip" data-placement="top"
@@ -232,7 +232,7 @@ $pdo->close();
                                 echo '<div class="item">
                             <div class="product-box">
                                 <div class="image-content">
-                                    <img src="images/'.$onerow['photo'].'" alt="">
+                                    <img src="images/products/'.$onerow['photo'].'" alt="">
                                     <ul class="add-items">
                                         <li>
                                             <a href="cart.php?Oneid='.$onerow['id'].'" data-toggle="tooltip" data-placement="top"
@@ -299,7 +299,7 @@ $pdo->close();
                 </div>
                 <div class="col-lg-6 col-md-6 col-12 mb-5">
                     <div class="image-content">
-                        <img src="images/Gear-Review-iPad-Pro-Top.jpg" alt="">
+                        <img src="images/products/Gear-Review-iPad-Pro-Top.jpg" alt="">
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@ try{
                                                     <div class='product-box'>
                                                       <div class='image-content'>
                                                       <input id='hide' type='hidden' value='".$Oneproduct['id']."' name='prodiidd'>
-                                                        <img src='images/".$Oneproduct['photo']."' alt='' name='img'/>
+                                                        <img src='images/products/".$Oneproduct['photo']."' alt='' name='img'/>
                                                         <ul class='add-items'>  
                                                           <li>
                                                             <a

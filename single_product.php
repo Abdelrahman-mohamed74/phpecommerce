@@ -40,10 +40,8 @@ include('includes/conn.php');
                         <?php 
                             foreach ($selcetedProd as $singelPro) {
                                 echo '<div class="col-lg-4 col-md-6 col-12 mb-5">
-                            <div class=" owl-carousel owl-item owl-single-product">
                                 <div class="item">
-                                    <img src="images/'.$singelPro["photo"].'" alt="">
-                                </div>
+                                    <img src="images/products/'.$singelPro["photo"].'" alt="">
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-6 col-12 mb-5">
