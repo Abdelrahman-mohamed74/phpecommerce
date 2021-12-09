@@ -80,8 +80,9 @@
                     <div class="col-lg-6 col-md-6 col-4">
                         <ul class="button-groups">
                             <li>
-                                <div class="form">
-                                    <input class="search-input" type="text" placeholder=" Search Here">
+                                <form method="POST" class="form" action="search.php">
+                                    <div class="form">
+                                    <input class="search-input" type="text" placeholder=" Search Here" id="navbar-search-input" name="keyword"> 
                                     <a href="#" class="search-bnt">
                                         <i class="fas fa-search"></i>
                                     </a>
@@ -241,9 +242,10 @@
                                         </li>
                                     </ul>
                                     <div class="buttons-contain">
-                                        <a href="cart.php" class="custom-btn black-btn">View Cart</a>
+                                        <a href="cart_view.php" class="custom-btn black-btn">View Cart</a>
                                         <a href="checkout.php" class="custom-btn blue-btn">Checkout</a>
                                     </div>
+                                    
                                 </div>
                             </li>
                         </ul>

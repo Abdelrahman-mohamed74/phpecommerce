@@ -1,3 +1,4 @@
+<?php include 'includes/session.php'; ?>
 
 <?php
 
@@ -37,6 +38,7 @@ $conn = null;
 }
 
 ?>
+
 
 <?php
 
@@ -87,63 +89,22 @@ include('includes/header.php');
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <a href="#">
-                                        <img src="images/products/69.jpg" alt="" class="img-thumbnail">
-                                    </a>
-                                </td>
-                                <td class="text-center">Product Name</td>
-                                <td class="text-center">More Details For this Product</td>
-                                <td class="text-center">
-                                    <form>
-                                        <div class="quantity-container">
-                                            <div class="add-more">
-                                                <span class="qt-minus"><i class="fas fa-minus"></i></span>
-                                                <span class="qt">1</span>
-                                                <span class="qt-plus"><i class="fas fa-plus"></i></span>
-
-                                            </div>
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">$122.00</td>
-                                <td>
-                                    <a href="#">
-                                        <i class="far fa-trash-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <a href="#">
-                                        <img src="images/products/67.jpg" alt="" class="img-thumbnail">
-                                    </a>
-                                </td>
-                                <td class="text-center"> Product Name </td>
-                                <td class="text-center">More Details For this Product</td>
-                                <td class="text-center">
-                                    <form>
-                                        <div class="quantity-container">
-                                            <div class="add-more">
-                                                <span class="qt-minus"><i class="fas fa-minus"></i></span>
-                                                <span class="qt">1</span>
-                                                <span class="qt-plus"><i class="fas fa-plus"></i></span>
-
-                                            </div>
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">$122.00</td>
-                                <td>
-                                    <a href="#">
-                                        <i class="far fa-trash-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                          
                         </tbody>
                     </table>
                 </div>
+                <?php
+                        if(isset($_SESSION['user'])){
+                            echo "
+                                <div id='paypal-button'></div>
+                            ";
+                        }
+                        else{
+                            echo "
+                                <h4>You need to <a href='login.php'>Login</a> to checkout.</h4>
+                            ";
+                        }
+                    ?>
                 <div class="row">
                     <div class="col-md-8 m-auto">
                         <div class="cart-summary">
@@ -170,6 +131,8 @@ include('includes/header.php');
 
 include('includes/footer.php');
 ?>
+<?php include 'includes/scripts.php'; ?>
+
     <script>
         // ------------ increase products -----------
         $(".qt-plus").click(function () {
@@ -188,3 +151,144 @@ include('includes/footer.php');
 
         });
     </script>
+    <script>
+var total = 0;
+$(function(){
+    $(document).on('click', '.cart_delete', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.ajax({
+            type: 'POST',
+            url: 'cart_delete.php',
+            data: {id:id},
+            dataType: 'json',
+            success: function(response){
+                if(!response.error){
+                    getDetails();
+                    getCart();
+                    getTotal();
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.minus', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var qty = $('#qty_'+id).val();
+        if(qty>1){
+            qty--;
+        }
+        $('#qty_'+id).val(qty);
+        $.ajax({
+            type: 'POST',
+            url: 'cart_update.php',
+            data: {
+                id: id,
+                qty: qty,
+            },
+            dataType: 'json',
+            success: function(response){
+                if(!response.error){
+                    getDetails();
+                    getCart();
+                    getTotal();
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.add', function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var qty = $('#qty_'+id).val();
+        qty++;
+        $('#qty_'+id).val(qty);
+        $.ajax({
+            type: 'POST',
+            url: 'cart_update.php',
+            data: {
+                id: id,
+                qty: qty,
+            },
+            dataType: 'json',
+            success: function(response){
+                if(!response.error){
+                    getDetails();
+                    getCart();
+                    getTotal();
+                }
+            }
+        });
+    });
+
+    getDetails();
+    getTotal();
+
+});
+
+function getDetails(){
+    $.ajax({
+        type: 'POST',
+        url: 'cart_details.php',
+        dataType: 'json',
+        success: function(response){
+            $('#tbody').html(response);
+            getCart();
+        }
+    });
+}
+
+function getTotal(){
+    $.ajax({
+        type: 'POST',
+        url: 'cart_total.php',
+        dataType: 'json',
+        success:function(response){
+            total = response;
+        }
+    });
+}
+</script>
+<!-- Paypal Express -->
+<script>
+paypal.Button.render({
+    env: 'sandbox', // change for production if app is live,
+
+    client: {
+        sandbox:    'ASb1ZbVxG5ZFzCWLdYLi_d1-k5rmSjvBZhxP2etCxBKXaJHxPba13JJD_D3dTNriRbAv3Kp_72cgDvaZ',
+        //production: 'AaBHKJFEej4V6yaArjzSx9cuf-UYesQYKqynQVCdBlKuZKawDDzFyuQdidPOBSGEhWaNQnnvfzuFB9SM'
+    },
+
+    commit: true, // Show a 'Pay Now' button
+
+    style: {
+        color: 'gold',
+        size: 'small'
+    },
+
+    payment: function(data, actions) {
+        return actions.payment.create({
+            payment: {
+                transactions: [
+                    {
+                        //total purchase
+                        amount: { 
+                            total: total, 
+                            currency: 'USD' 
+                        }
+                    }
+                ]
+            }
+        });
+    },
+
+    onAuthorize: function(data, actions) {
+        return actions.payment.execute().then(function(payment) {
+            window.location = 'sales.php?pay='+payment.id;
+        });
+    },
+
+}, '#paypal-button');
+</script>
+
