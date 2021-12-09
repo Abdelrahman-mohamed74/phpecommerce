@@ -20,6 +20,8 @@ try{
     $stmt = $conn->prepare("UPDATE users SET firstname = :username WHERE email = :useremail");
     $stmt->bindParam(':username',$_POST['fullnameedit']);
     $stmt->bindParam(':useremail',$_SESSION['email'] );
+    $stmt->bindParam(':Gender',$_SESSION['Gender'] );
+    $stmt->bindParam(':Phone',$_SESSION['Phone'] );
     $stmt->execute();
 
 

@@ -92,7 +92,7 @@
 	                <h4><i class="icon fa fa-warning"></i> Error!</h4>
 	                Cannot activate account. Wrong code.
 	            </div>
-	            <h4>You may <a href="signup.php">Signup</a> or back to <a href="index.php">Homepage</a>.</h4>
+	            <h4>You may <a href="register.php">Signup</a> or back to <a href="index.php">Homepage</a>.</h4>
 			';
 		}
 

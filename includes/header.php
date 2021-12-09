@@ -155,8 +155,9 @@
                     <div class="col-lg-6 col-md-6 col-4">
                         <ul class="button-groups">
                             <li>
-                                <div class="form">
-                                    <input class="search-input" type="text" placeholder=" Search Here">
+                                <form method="POST" class="form" action="search.php">
+                                    <div class="form">
+                                    <input class="search-input" type="text" placeholder=" Search Here" id="navbar-search-input" name="keyword"> 
                                     <a href="#" class="search-bnt">
                                         <i class="fas fa-search"></i>
                                     </a>
@@ -272,9 +273,10 @@
                                       
                                     </ul>
                                     <div class="buttons-contain">
-                                        <a href="cart.php" class="custom-btn black-btn">View Cart</a>
+                                        <a href="cart_view.php" class="custom-btn black-btn">View Cart</a>
                                         <a href="checkout.php" class="custom-btn blue-btn">Checkout</a>
                                     </div>
+                                    
                                 </div>
                             </li>
                         </ul>
@@ -301,12 +303,42 @@
                                 Store
                             </a>
                         </li>
+                        <!-- 
+                        <li>
+                            <a href="new.php">
+                                New Product
+                            </a -->
+                        </li>
                        
                         <li>
                             <a href="contact_us.php">
                                 Contact us
                             </a>
                         </li>
+                         <li class="dropdown">
+					            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CATEGORY <span class="caret"></span></a>
+					            <ul class="dropdown-menu" role="menu">
+					              <?php
+					             
+					                $conn = $pdo->open();
+					                try{
+					                  $stmt = $conn->prepare("SELECT * FROM category");
+					                  $stmt->execute();
+					                  foreach($stmt as $row){
+					                    echo "
+					                      <li><a href='category.php?category=".$row['cat_slug']."'>".$row['name']."</a></li>
+					                    ";                  
+					                  }
+					                }
+					                catch(PDOException $e){
+					                  echo "There is some problem in connection: " . $e->getMessage();
+					                }
+
+					                $pdo->close();
+
+					              ?>
+					            </ul>
+					          </li>
                     </ul>
                 </div>
             </div>

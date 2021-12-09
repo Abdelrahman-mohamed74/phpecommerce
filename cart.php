@@ -1,5 +1,7 @@
+<?php include 'includes/session.php'; ?>
 
 <?php include 'includes/session.php'; ?>
+
 
 <?php
 
@@ -27,6 +29,18 @@ include('includes/header.php');
 					   </tbody>
                     </table>
                 </div>
+                <?php
+                        if(isset($_SESSION['user'])){
+                            echo "
+                                <div id='paypal-button'></div>
+                            ";
+                        }
+                        else{
+                            echo "
+                                <h4>You need to <a href='login.php'>Login</a> to checkout.</h4>
+                            ";
+                        }
+                    ?>
                 <div class="row">
                     <div class="col-md-8 m-auto">
                         <div class="cart-summary">
@@ -68,6 +82,7 @@ include('includes/header.php');
 
 include('includes/footer1.php');
 ?>
+
     <script>
         // ------------ increase products -----------
         $(".qt-plus").click(function () {
