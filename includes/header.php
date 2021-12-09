@@ -273,7 +273,7 @@
                                       
                                     </ul>
                                     <div class="buttons-contain">
-                                        <a href="cart_view.php" class="custom-btn black-btn">View Cart</a>
+                                        <a href="cart.php" class="custom-btn black-btn">View Cart</a>
                                         <a href="checkout.php" class="custom-btn blue-btn">Checkout</a>
                                     </div>
                                     
