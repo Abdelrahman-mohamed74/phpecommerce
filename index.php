@@ -1,7 +1,6 @@
-<?php
-session_start();
-include('includes/conn.php');
 
+<?php include 'includes/session.php'; ?>
+<?php
 $conn = $pdo->open();
 
 
@@ -55,15 +54,15 @@ $pdo->close();
             <!-- Slides -->
             <div class="swiper-slide slide-1" data-title="Hurry up! <br> Limited time offer."
                 data-subtitle=" <a href='products.php' class='custom-btn btn-danger'>Shop Now </a>">
-                <img src="images/hero-slider/01.jpg" width="70%" height="100%" alt="">
+                <img src="images/01.jpg" width="70%" height="100%" alt="">
             </div>
             <div class="swiper-slide slide-2" data-title="Hurry up!<br> Limited time offer."
                 data-subtitle=" <a href='products.php' class='custom-btn btn-danger'>Shop Now</a>">
-                <img src="images/hero-slider/02.jpg" width="70%" height="100%" alt="">
+                <img src="images/02.jpg" width="70%" height="100%" alt="">
             </div>
             <div class="swiper-slide slide-3" data-title="Hurry up!<br> Limited time offer."
                 data-subtitle=" <a href='products.php' class='custom-btn btn-danger'>Shop Now</a>">
-                <img src="images/hero-slider/03.jpg" width="70%" height="100%" alt="">
+                <img src="images/03.jpg" width="70%" height="100%" alt="">
             </div>
         </div>
         <!-- Slide captions -->
@@ -117,7 +116,7 @@ $pdo->close();
                                   echo '  <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/products/'.$product["photo"].'" alt="">
+                                            <img src="images/'.$product["photo"].'" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.php?Oneid='.$product["id"].'" data-toggle="tooltip" data-placement="top"
@@ -189,7 +188,7 @@ $pdo->close();
                 <div class="col-lg-8 col-md-8 col-12 mb-5">
                     <div class="banner-item">
                         <a href="checkout.php">
-                            <img src="images/product/banner2.jpg" alt="">
+                            <img src="images/banner2.jpg" alt="">
                         </a>
                         <div class="banner-content">
                             <small>Hurry up! Limited time offer</small>
@@ -232,7 +231,7 @@ $pdo->close();
                                 echo '<div class="item">
                             <div class="product-box">
                                 <div class="image-content">
-                                    <img src="images/products/'.$onerow['photo'].'" alt="">
+                                    <img src="images/'.$onerow['photo'].'" alt="">
                                     <ul class="add-items">
                                         <li>
                                             <a href="cart.php?Oneid='.$onerow['id'].'" data-toggle="tooltip" data-placement="top"
@@ -299,7 +298,7 @@ $pdo->close();
                 </div>
                 <div class="col-lg-6 col-md-6 col-12 mb-5">
                     <div class="image-content">
-                        <img src="images/products/Gear-Review-iPad-Pro-Top.jpg" alt="">
+                        <img src="images/Gear-Review-iPad-Pro-Top.jpg" alt="">
                     </div>
                 </div>
             </div>

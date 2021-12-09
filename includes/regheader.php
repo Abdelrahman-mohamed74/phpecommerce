@@ -103,7 +103,10 @@
     
 }
     </style>
-    <title>PHP ECOMMERCE</title>
+    
+	
+	
+	<title>PHP ECOMMERCE</title>
 </head>
 
 <body>
@@ -111,33 +114,7 @@
 
     <!--start nav-->
     <nav class="nav ">
-        <div class="top-nav">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6">
-                        <ul class="mail-content">
-                            <li>
-                                <i class="fas fa-envelope-open-text"></i>
-                                <a href="#">support@admin.com</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-map-marked-alt"></i>
-                                <a href="#"> Location</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-6">
-                        <ul class="hotline">
-                            <li>
-                                <span> Hot Line : </span>
-                                <a href="#">33445</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mid-nav">
+       <div class="mid-nav">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-8">
@@ -282,33 +259,7 @@
                 </div>
             </div>
         </div>
-        <div class="bottom-nav">
-            <div class="container">
-                <div class="row">
-                </div>
-                <div class="col-lg-12 col-12">
-                    <ul class="nav-items">
-                        <li>
-                            <a href="index.php">Home</a>
-                        </li>
-                        <li>
-                            <a href="About.php">
-                                About 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="products.php">
-                                Store
-                            </a>
-                        </li>
-                       
-                        <li>
-                            <a href="contact_us.php">
-                                Contact us
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+        
+		
+		
+	</nav>

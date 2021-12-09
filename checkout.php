@@ -1,3 +1,5 @@
+<?php include 'includes/session.php'; ?>
+
 <?php
     include('includes/header.php');
 
@@ -79,7 +81,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                     <div class="form-group">
-                                                        <label for="exampleFormControlSelect1"> المدينه</label>
+                                                        <label for="exampleFormControlSelect1"> city</label>
                                                         <select class="form-control" id="exampleFormControlSelect1">
                                                             <option>New Cairo</option>
                                                             <option>Mansoura</option>
@@ -114,7 +116,7 @@
                                             </div>
                                             <div class="item">
                                                 <div class="content">
-                                                    <img src="images/product/12.jpg" alt="">
+                                                    <img src="images/12.jpg" alt="">
                                                     <div class="text text-center">
                                                         <h6>Amazon Card  </h6>
                                                         <p>250.00 EGP</p>
@@ -124,7 +126,7 @@
                                             </div>
                                             <div class="item">
                                                 <div class="content">
-                                                    <img src="images/product/08.jpg" alt="">
+                                                    <img src="images/08.jpg" alt="">
                                                     <div class="text text-center">
                                                         <h6>Amazon Card  </h6>
                                                         <p>250.00 EGP</p>

@@ -1,6 +1,8 @@
-<?php
-	session_start();
-	session_destroy();
+<?php include 'includes/session.php'; ?>
 
-	header('location: index.php');
+<?php
+
+session_unset();
+session_destroy();
+header('Location:login.php');
 ?>

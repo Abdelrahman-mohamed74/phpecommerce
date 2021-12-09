@@ -149,8 +149,6 @@
             </div>
         </div>
 
-
-
     <script src="js/lib/jquery-3.6.0.min.js"></script>
     <script src="js/lib/popper.js"></script>
     <script src="js/lib/bootstrap.js"></script>
@@ -160,7 +158,6 @@
     <script src="js/lib/flipdown.js"></script>
     
     <script src="js/main.js"></script>
-    
 	<script>
 	$(document).ready(function(){  
       load_data();  
@@ -170,20 +167,16 @@
                 url:"pagination.php",  
                 method:"GET",  
                 data:{page:page},  
-                success:function(response){  
-                     $('#pagination_data').html(response);  
+                success:function(data){  
+                     $('#pagination_data').html(data);  
                 }  
            })  
       }  
       $(document).on('click', '.pagination_link', function(){  
-           var page = $(this).attr("id");  
+           var page = $(this).attr("pageid");  
            load_data(page);  
       });  
  }); 
 	</script>
     <script src="js/scripts.js"></script>
 
-
-</body>
-
-</html>

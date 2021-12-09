@@ -1,11 +1,9 @@
 
     <?php
-session_start();
-include('includes/conn.php');
+include('includes/session.php');
 ?>
 <?php
 
-// include('includes/header.php');
 
     if (isset($_GET['Oneid'])) {
         
@@ -41,7 +39,7 @@ include('includes/conn.php');
                             foreach ($selcetedProd as $singelPro) {
                                 echo '<div class="col-lg-4 col-md-6 col-12 mb-5">
                                 <div class="item">
-                                    <img src="images/products/'.$singelPro["photo"].'" alt="">
+                                    <img src="images/'.$singelPro["photo"].'" alt="">
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-6 col-12 mb-5">
@@ -258,7 +256,7 @@ include('includes/conn.php');
     <!-- Start Footer -->
     <?php
 
-include('includes/footer.php');
+include('includes/footer1.php');
 ?>
     <script>
         

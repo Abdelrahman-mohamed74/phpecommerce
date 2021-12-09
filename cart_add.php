@@ -63,3 +63,68 @@
 	echo json_encode($output);
 
 ?>
+<?php
+	/*include 'includes/session.php';
+
+	$conn = $pdo->open();
+
+	$output = array('error'=>false);
+
+	$prodid = $_POST['id'];
+	$quantity = $_POST['quantity'];
+
+	if(isset($_SESSION['user'])){
+		$stmt = $conn->prepare("SELECT * FROM cart WHERE user_id=:user_id AND product_id=:product_id");
+		$stmt->execute(['user_id'=>$user['id'], 'product_id'=>$prodid]);
+		$row = $stmt->fetch();
+		if(count($row) == 0){
+			try{
+				$stmt = $conn->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity)");
+				$stmt->execute(['user_id'=>$user['id'], 'product_id'=>$prodid, 'quantity'=>$quantity]);
+				$output['message'] = 'Item added to cart';
+				
+			}
+			catch(PDOException $e){
+				$output['error'] = true;
+				$output['message'] = $e->getMessage();
+			}
+		}
+		else{
+			$output['error'] = true;
+			$output['message'] = 'Product already in cart';
+		}
+	}
+	else{
+		if(!isset($_SESSION['cart'])){
+			$_SESSION['cart'] = array();
+		}
+
+		$exist = array();
+
+		foreach($_SESSION['cart'] as $row){
+			array_push($exist, $row['productid']);
+		}
+
+		if(in_array($prodid, $exist)){
+			$output['error'] = true;
+			$output['message'] = 'Product already in cart '.$prodid;
+		}
+		else{
+			$data['productid'] = $prodid;
+			$data['quantity'] = $quantity;
+
+			if(array_push($_SESSION['cart'], $data)){
+				$output['message'] = 'Item added to cart'.$prodid;
+			}
+			else{
+				$output['error'] = true;
+				$output['message'] = 'Cannot add item to cart'.$prodid;
+			}
+		}
+
+	}
+
+	$pdo->close();
+	echo json_encode($output);
+*/
+?>

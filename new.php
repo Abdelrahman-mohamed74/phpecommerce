@@ -1,6 +1,6 @@
+<?php include 'includes/session.php'; ?>
 <?php
-session_start();
-include('includes/conn.php');
+
 include('includes/header.php');
 
 ?>
@@ -21,7 +21,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/72.jpg"  alt="">
+                                            <img src="images/72.jpg"  alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.php" data-toggle="tooltip" data-placement="top"
@@ -69,7 +69,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/25.jpg" alt="">
+                                            <img src="images/25.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -117,7 +117,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/20.jpg" alt="">
+                                            <img src="images/20.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -165,7 +165,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/01.jpg" alt="">
+                                            <img src="images/01.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -213,7 +213,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/62.jpg" alt="">
+                                            <img src="images/62.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -261,7 +261,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/61.jpg" alt="">
+                                            <img src="images/61.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -309,7 +309,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/68 (1).jpg" alt="">
+                                            <img src="images/68 (1).jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -357,7 +357,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/51.jpg" alt="">
+                                            <img src="images/51.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -409,7 +409,7 @@ include('includes/header.php');
                                             <div class="col-lg-8 col-md-8 col-12 mb-5">
                                                 <div class="banner-item">
                                                     <a href="checkout.html">
-                                                        <img src="images/product/banner2.jpg" alt="">
+                                                        <img src="images/banner2.jpg" alt="">
                                                     </a>
                                                     <div class="banner-content">
                                                         <small>Hurry up! Limited time offer</small>
@@ -438,7 +438,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/70.jpg" alt="">
+                                            <img src="images/70.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -487,7 +487,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/05.jpg" alt="">
+                                            <img src="images/05.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -535,7 +535,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/06.jpg" alt="">
+                                            <img src="images/06.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -583,7 +583,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/cat-lg04.jpg" alt="">
+                                            <img src="images/cat-lg04.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -631,7 +631,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/cat-sm03.jpg" alt="">
+                                            <img src="images/cat-sm03.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -679,7 +679,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/02.jpg" alt="">
+                                            <img src="images/02.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -727,7 +727,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/03.jpg" alt="">
+                                            <img src="images/03.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -775,7 +775,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/05.jpg" alt="">
+                                            <img src="images/05.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -823,7 +823,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/06.jpg" alt="">
+                                            <img src="images/06.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -871,7 +871,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/09.jpg" alt="">
+                                            <img src="images/09.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -919,7 +919,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/08.jpg" alt="">
+                                            <img src="images/08.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -967,7 +967,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/09.jpg" alt="">
+                                            <img src="images/09.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -1020,7 +1020,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/66.jpg" alt="">
+                                            <img src="images/66.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -1068,7 +1068,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/09.jpg" alt="">
+                                            <img src="images/09.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -1116,7 +1116,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/20.jpg" alt="">
+                                            <img src="images/20.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -1164,7 +1164,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/18.jpg" alt="">
+                                            <img src="images/18.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -1217,7 +1217,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/70.jpg" alt="">
+                                            <img src="images/70.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -1263,7 +1263,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/20.jpg" alt="">
+                                            <img src="images/20.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"
@@ -1311,7 +1311,7 @@ include('includes/header.php');
                                 <div class="col-lg-4 col-md-6 col-12 mb-5">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/product/16.jpg" alt="">
+                                            <img src="images/16.jpg" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.html" data-toggle="tooltip" data-placement="top"

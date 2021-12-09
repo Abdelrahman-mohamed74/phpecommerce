@@ -1,3 +1,4 @@
+<?php include 'includes/session.php'; ?>
 <?php
 require_once('mailer/SMTP.php');
 require_once('mailer/PHPMailer.php');

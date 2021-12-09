@@ -32,10 +32,12 @@
 				$total += $subtotal;
 				$output .= "
 					<tr>
-						<td><button type='button' data-id='".$row['cartid']."' class='btn btn-danger btn-flat cart_delete'><i class='fa fa-remove'></i></button></td>
+					    <td>".$row['name']."</td>
 						<td><img src='".$image."' width='30px' height='30px'></td>
-						<td>".$row['name']."</td>
+						
 						<td>&#36; ".number_format($row['price'], 2)."</td>
+						
+						
 						<td class='input-group'>
 							<span class='input-group-btn'>
             					<button type='button' id='minus' class='btn btn-default btn-flat minus' data-id='".$row['cartid']."'><i class='fa fa-minus'></i></button>
@@ -47,13 +49,16 @@
 				            </span>
 						</td>
 						<td>&#36; ".number_format($subtotal, 2)."</td>
+						<td><button type='button' data-id='".$row['cartid']."' class='btn btn-danger btn-flat cart_delete'><i class='far fa-trash-alt'></i></button></td>
+
 					</tr>
 				";
 			}
 			$output .= "
 				<tr>
-					<td colspan='5' align='right'><b>Total</b></td>
+					<td colspan='4' align='right'><b>Total</b></td>
 					<td><b>&#36; ".number_format($total, 2)."</b></td>
+					<td ><b> </b></td>
 				<tr>
 			";
 
@@ -75,21 +80,23 @@
 				$total += $subtotal;
 				$output .= "
 					<tr>
-						<td><button type='button' data-id='".$row['productid']."' class='btn btn-danger btn-flat cart_delete'><i class='fa fa-remove'></i></button></td>
-						<td><img src='".$image."' width='30px' height='30px'></td>
-						<td>".$product['name']."</td>
-						<td>&#36; ".number_format($product['price'], 2)."</td>
+						<td><img src='".$image."'  class='img-thumbnail'></td>
+						<td>".$product['prodname']."</td>
+						
 						<td class='input-group'>
 							<span class='input-group-btn'>
             					<button type='button' id='minus' class='btn btn-default btn-flat minus' data-id='".$row['productid']."'><i class='fa fa-minus'></i></button>
             				</span>
-            				<input type='text' class='form-control' value='".$row['quantity']."' id='qty_".$row['productid']."'>
+            				<input type='text' class='qt' value='".$row['quantity']."' id='qty_".$row['productid']."'>
 				            <span class='input-group-btn'>
 				                <button type='button' id='add' class='btn btn-default btn-flat add' data-id='".$row['productid']."'><i class='fa fa-plus'></i>
 				                </button>
 				            </span>
 						</td>
+						<td>&#36; ".number_format($product['price'], 2)."</td>
 						<td>&#36; ".number_format($subtotal, 2)."</td>
+						<td><button type='button' data-id='".$row['productid']."' class='btn btn-danger btn-flat cart_delete'><i class='far fa-trash-alt'></i></button></td>
+						
 					</tr>
 				";
 				
@@ -97,8 +104,9 @@
 
 			$output .= "
 				<tr>
-					<td colspan='5' align='right'><b>Total</b></td>
+					<td colspan='4' align='right'><b>Total</b></td>
 					<td><b>&#36; ".number_format($total, 2)."</b></td>
+					<td ><b> </b></td>
 				<tr>
 			";
 		}
@@ -106,7 +114,7 @@
 		else{
 			$output .= "
 				<tr>
-					<td colspan='6' align='center'>Shopping cart empty</td>
+					<td colspan='6' align='center'><b>Shopping cart empty</b></td>
 				<tr>
 			";
 		}

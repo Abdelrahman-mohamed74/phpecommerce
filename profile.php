@@ -1,7 +1,11 @@
-<?php
-session_start();
-include('includes/conn.php');
+<?php include 'includes/session.php';
+
+if (!isset($_SESSION['user'])) 
+{
+    header('location: login.php');
+  }
 ?>
+
 
 <?php
 $conn = $pdo->open();
@@ -19,7 +23,7 @@ try{
     $stmt->execute();
 
 
-     $target_dir = "user_photos/";
+     $target_dir = "images/";
                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
               if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
@@ -60,7 +64,7 @@ $conn = $pdo->close();
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="side-nav">
-                            <div class="profile-img"> <img src="user_photos/<?php echo $_SESSION['image']; ?>" alt="user-pic">
+                            <div class="profile-img"> <img src="images/<?php echo $_SESSION['image']; ?>" alt="user-pic">
                                 <h6><?php echo $_SESSION['fullname'];?></h6>
                             </div>
                             <div class="links">
@@ -177,7 +181,7 @@ $conn = $pdo->close();
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <span class="new"></span>
-                                                <img src="images/product/55.jpg" alt="" class="noti-img">
+                                                <img src="images/55.jpg" alt="" class="noti-img">
                                             </div>
                                             <div class="col-md-8">
                                                 <h6>Noon Card</h6>
@@ -191,7 +195,7 @@ $conn = $pdo->close();
                                     <div class="noti-item mt-3">
                                         <div class="row">
                                             <div class="col-md-2">
-                                                <img src="images/product/12.jpg" alt="" class="noti-img">
+                                                <img src="images/12.jpg" alt="" class="noti-img">
                                             </div>
                                             <div class="col-md-8">
                                                 <h6>Noon Card</h6>
@@ -225,7 +229,7 @@ $conn = $pdo->close();
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">1</th>
-                                                    <td><img src="images/product/55.jpg" alt=""></td>
+                                                    <td><img src="images/55.jpg" alt=""></td>
                                                     <td class="d-none-sm"> Product Name</td>
                                                     <td class="d-none-md">12542325</td>
                                                     <td class="d-none-md">22 april 2021</td>
@@ -233,7 +237,7 @@ $conn = $pdo->close();
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">2</th>
-                                                    <td><img src="images/product/20.jpg" alt=""></td>
+                                                    <td><img src="images/20.jpg" alt=""></td>
                                                     <td class="d-none-sm">Product Name </td>
                                                     <td class="d-none-md">12542325</td>
                                                     <td class="d-none-md">22 april 2021</td>
@@ -241,7 +245,7 @@ $conn = $pdo->close();
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">3</th>
-                                                    <td><img src="images/product/15.jpg" alt=""></td>
+                                                    <td><img src="images/15.jpg" alt=""></td>
                                                     <td class="d-none-sm">Product Name </td>
                                                     <td class="d-none-md">12542325</td>
                                                     <td class="d-none-md">22 april 2021</td>
@@ -271,7 +275,7 @@ $conn = $pdo->close();
                     </div>
                     <div class="modal-body">
                         <div class="image-container">
-                            <img src="user_photos/<?php echo $_SESSION['image']; ?>" alt="user-pic" name="image">
+                            <img src="images/<?php echo $_SESSION['image']; ?>" alt="user-pic" name="image">
                             <input type="file" class="custom-file-input" id="input-profile" name="fileToUpload"  capture="">
                             <button><i class="far fa-edit"></i></button>
                         </div>

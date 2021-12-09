@@ -463,11 +463,12 @@ button {
 }
 
 .nav .mid-nav .button-groups .cart-shape .dropdown-menu .data .item .item-image {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 4px;
   overflow: hidden;
   margin: 0px 0px 0px 10px;
+
 }
 
 .nav .mid-nav .button-groups .cart-shape .dropdown-menu .data .item .item-image img {
@@ -476,7 +477,9 @@ button {
   -o-object-fit: cover;
      object-fit: cover;
 }
-
+.nav .mid-nav .button-groups .cart-shape .dropdown-menu .data .item .item-content{
+  padding-left: 1rem;
+}
 .nav .mid-nav .button-groups .cart-shape .dropdown-menu .data .item .item-content h6 {
   color: #36415a;
   font-weight: 500;
@@ -512,7 +515,7 @@ button {
 
 .nav .mid-nav .button-groups .cart-shape .dropdown-menu .buttons-contain .custom-btn {
   width: 100%;
-  padding: 15px 20px;
+  padding: 10px 20px;
   border-radius: 5px;
   color: #f0f0f0;
   display: block;
@@ -2272,8 +2275,8 @@ input, button, select, optgroup, textarea {
 /***************************** Start Edit Register Page *****************************/
 .register-pg {
   padding: 100px 0;
-  background-color: #000 !important;
-  position: relative;
+  background-color: #242222 !important;
+    position: relative;
   z-index: 99;
   height: 100%;
 }
@@ -2885,7 +2888,7 @@ input, button, select, optgroup, textarea {
   font-size: 15px;
 }
 
-.cart-pg .cart-summary a {
+.cart-pg .cart-summary .oldlink {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -2904,7 +2907,7 @@ input, button, select, optgroup, textarea {
   transition: all .3s ease;
 }
 
-.cart-pg .cart-summary a:hover {
+.cart-pg .cart-summary .oldlink:hover {
   background-color: #000;
   border: 1px solid #000;
 }
@@ -3372,3 +3375,4 @@ input, button, select, optgroup, textarea {
   border-radius: 50%;
   margin:0 5px;
 }
+

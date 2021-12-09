@@ -1,6 +1,7 @@
+<?php include 'includes/session.php'; ?>
+
 <?php
-session_start();
-include('includes/conn.php');
+
 ?>
 
 <?php

@@ -23,22 +23,24 @@ try{
   foreach ($results as $Oneproduct) {
                                           //  print_r($Oneproduct);
        $output.= "  <div class='col-lg-4 col-md-6 col-12 mb-5'>
-                                         <form id='productForm'>
+                                         <form id='productForm' method='post'>
                                                     <div class='product-box'>
                                                       <div class='image-content'>
-                                                      <input id='hide' type='hidden' value='".$Oneproduct['id']."' name='prodiidd'>
-                                                        <img src='images/products/".$Oneproduct['photo']."' alt='' name='img'/>
+                                                      <input id='hide1' type='hidden' value='".$Oneproduct['id']."' name='id'>
+                                                      <input id='hide2' type='hidden' value='1' name='quantity'>
+
+                                                        <img src='images/".$Oneproduct['photo']."' alt='' name='img'/>
                                                         <ul class='add-items'>  
                                                           <li>
-                                                            <a
-                                                              href='products.php'
+                                                            <span
+                                                              
                                                               data-toggle='tooltip'
                                                               data-placement='top'
                                                               title='  Add to cart'
              
                                                             >
-                                                              <button type='submit' class='fas fa-shopping-basket' name='addtocart'></button>
-                                                            </a>
+                                                              <button type='submit' class='fas fa-shopping-basket' id='add' name='addtocart'></button>
+                                                            </span>
                                                           </li>
                                                           <li>
                                                             <a
@@ -94,8 +96,16 @@ try{
 	 $output .= "<div class='col-12'><div class='block-27 mt-5  text-center'>";
                         
 
-   for ($count = 1; $count <= $totalPage; ++$count) { 
-                                  $output .= "<span class='pagination_link' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='".$count."'>".$count."</span>";  
+   for ($coun = 1; $coun <= $totalPage; ++$coun) { 
+      if($page==$coun)
+      {
+        $output .= "<span class='pagination_link' style='cursor:pointer; background-color:gray; color:white;padding:6px; border:1px solid #ccc;' id='".$coun."'>".$coun."</span>";  
+
+      }
+      else{
+        $output .= "<span class='pagination_link' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='".$coun."'>".$coun."</span>";  
+
+      }
 
                         }
 	 $output .= "</div></div>";					

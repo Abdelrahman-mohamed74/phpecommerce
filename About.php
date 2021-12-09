@@ -1,6 +1,7 @@
+<?php include 'includes/session.php'; ?>
+
 <?php
-session_start();
-include('includes/conn.php');
+
  include('includes/header.php');
 
     ?>
@@ -56,8 +57,8 @@ include('includes/conn.php');
                         dolor. Mauris rutrum fermentum erat, at euismod. Duis erat lectus, ultrices euismod sagittis
                         at dolor tristique nec. Tristique nulla aliquet enim tortor at auctor urna nunc. Sit amet
                         aliquam id diam maecenas ultricies mi eget.</p>
-                    <img src="images/about/google.png" alt="">
-                    <img src="images/about/google.png" alt="">
+                    <img src="images/google.png" alt="">
+                    <img src="images/google.png" alt="">
 
                 </div>
             </div>
