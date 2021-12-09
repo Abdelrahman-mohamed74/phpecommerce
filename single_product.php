@@ -144,28 +144,46 @@ include('includes/conn.php');
                                 </div>
                                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                     <div class="data-content">
+                                    <?php
+
+                                        if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["btn"]))
+                                        {
+                                            $fullname=$_POST["fullname"];
+                                            $mobile=$_POST["tel"];
+                                            $email=$_POST["email"];
+                                            $country=$_POST["country"];
+                                            $service=$_POST["service"];
+                                            $desc=$_POST["description"];
+
+                                            // Get PHP Mailer
+                                            include("ContactMailer.php");
+                                          
+                                        }
+
+                                            ?>
                                         <h5> Add Comment</h5>
                                         <p class="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis delectus libero facilis iusto voluptas nobis. Soluta cum exercitationem quae dolores?</p>
-                                        <form class="form">
+                                       <form class="form" enctype="multipart/form-data" action="" method="post">
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Full Name">
+                                                        <input type="text" class="form-control" placeholder="Full Name"
+                                                        name="fullname">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" placeholder="Email">
+                                                        <input type="text" class="form-control" placeholder="Email"  name="email">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
-                                                        <textarea class="form-control" placeholder="Message"></textarea>
+                                                        <textarea class="form-control" placeholder="Message" name="description"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="button-content">
-                                                        <a href="#" class="custom-btn black-btn">Send</a>
+                                                        <a href="#" class="custom-btn black-btn" name="btn">Send</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -197,7 +215,7 @@ include('includes/conn.php');
                                                 echo '<div class="item">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/'.$showpro["photo"].'" alt="">
+                                            <img src="images/products/'.$showpro["photo"].'" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.php" data-toggle="tooltip" data-placement="top" title="ا Add to cartه">
