@@ -193,7 +193,7 @@
                                     <ul class="data">
                                         <li class="item">
                                             <div class="item-image">
-                                                <img src="images/product/01.jpg" alt="">
+                                                <img src="images/products/01.jpg" alt="">
                                             </div>
                                             <div class="item-content">
                                                 <h6> Product Name </h6>
@@ -205,7 +205,7 @@
                                         </li>
                                         <li class="item">
                                             <div class="item-image">
-                                                <img src="images/product/04.jpg" alt="">
+                                                <img src="images/products/04.jpg" alt="">
                                             </div>
                                             <div class="item-content">
                                                 <h6> Product Name </h6>
@@ -217,7 +217,7 @@
                                         </li>
                                         <li class="item">
                                             <div class="item-image">
-                                                <img src="images/product/06.jpg" alt="">
+                                                <img src="images/products/06.jpg" alt="">
                                             </div>
                                             <div class="item-content">
                                                 <h6> Product Name </h6>

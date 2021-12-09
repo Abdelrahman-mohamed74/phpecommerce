@@ -63,7 +63,7 @@ include('includes/header.php');
                             <tr>
                                 <td class="text-center">
                                     <a href="#">
-                                        <img src="images/product/66.jpg" alt="" class="img-thumbnail">
+                                        <img src="images/products/66.jpg" alt="" class="img-thumbnail">
                                     </a>
                                 </td>
                                 <td class="text-center">Product Name </td>
@@ -90,7 +90,7 @@ include('includes/header.php');
                             <tr>
                                 <td class="text-center">
                                     <a href="#">
-                                        <img src="images/product/69.jpg" alt="" class="img-thumbnail">
+                                        <img src="images/products/69.jpg" alt="" class="img-thumbnail">
                                     </a>
                                 </td>
                                 <td class="text-center">Product Name</td>
@@ -117,7 +117,7 @@ include('includes/header.php');
                             <tr>
                                 <td class="text-center">
                                     <a href="#">
-                                        <img src="images/product/67.jpg" alt="" class="img-thumbnail">
+                                        <img src="images/products/67.jpg" alt="" class="img-thumbnail">
                                     </a>
                                 </td>
                                 <td class="text-center"> Product Name </td>
