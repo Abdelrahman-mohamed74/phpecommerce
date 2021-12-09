@@ -265,7 +265,7 @@
                                 About 
                             </a>
                         </li>
-                        <li>
+                  <!--       <li>
                             <a href="products.php">
                                 Product
                             </a>
@@ -273,13 +273,37 @@
                         <li>
                             <a href="new.php">
                                 New Product
-                            </a>
+                            </a -->
                         </li>
                         <li>
                             <a href="contact_us.php">
                                 Contact us
                             </a>
                         </li>
+                         <li class="dropdown">
+					            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CATEGORY <span class="caret"></span></a>
+					            <ul class="dropdown-menu" role="menu">
+					              <?php
+					             
+					                $conn = $pdo->open();
+					                try{
+					                  $stmt = $conn->prepare("SELECT * FROM category");
+					                  $stmt->execute();
+					                  foreach($stmt as $row){
+					                    echo "
+					                      <li><a href='category.php?category=".$row['cat_slug']."'>".$row['name']."</a></li>
+					                    ";                  
+					                  }
+					                }
+					                catch(PDOException $e){
+					                  echo "There is some problem in connection: " . $e->getMessage();
+					                }
+
+					                $pdo->close();
+
+					              ?>
+					            </ul>
+					          </li>
                     </ul>
                 </div>
             </div>
