@@ -42,7 +42,7 @@ include('includes/session.php');
                                 echo '<div class="col-lg-4 col-md-6 col-12 mb-5">
                             <div class=" owl-carousel owl-item owl-single-product">
                                 <div class="item">
-                                    <img src="images/'.$singelPro["photo"].'" alt="">
+                                    <img src="images/'.$singelPro["photo"].'" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -199,7 +199,7 @@ include('includes/session.php');
                                                 echo '<div class="item">
                                     <div class="product-box">
                                         <div class="image-content">
-                                            <img src="images/products/'.$showpro["photo"].'" alt="">
+                                            <img src="images/'.$showpro["photo"].'" alt="">
                                             <ul class="add-items">
                                                 <li>
                                                     <a href="cart.php" data-toggle="tooltip" data-placement="top" title="ا Add to cartه">
